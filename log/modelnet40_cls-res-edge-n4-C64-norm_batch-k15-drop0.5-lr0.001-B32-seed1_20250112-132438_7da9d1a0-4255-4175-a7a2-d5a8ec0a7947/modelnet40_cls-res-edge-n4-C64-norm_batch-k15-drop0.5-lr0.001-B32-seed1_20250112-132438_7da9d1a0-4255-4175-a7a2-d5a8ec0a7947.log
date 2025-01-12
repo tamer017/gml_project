@@ -1,0 +1,52 @@
+2025-01-12 13:24:38,369 saving log, checkpoint and back up code in folder: log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-132438_7da9d1a0-4255-4175-a7a2-d5a8ec0a7947
+2025-01-12 13:24:38,369 ==========       args      =============
+2025-01-12 13:24:38,369 phase:train
+2025-01-12 13:24:38,369 exp_name:modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1
+2025-01-12 13:24:38,369 job_name:modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-132438_7da9d1a0-4255-4175-a7a2-d5a8ec0a7947
+2025-01-12 13:24:38,369 use_cpu:False
+2025-01-12 13:24:38,369 root_dir:log
+2025-01-12 13:24:38,369 data_dir:/user/ahmed.assy/u12745/Dataset
+2025-01-12 13:24:38,369 dataset:ModelNet40
+2025-01-12 13:24:38,369 num_points:2048
+2025-01-12 13:24:38,369  :True
+2025-01-12 13:24:38,369 in_channels:3
+2025-01-12 13:24:38,369 batch_size:32
+2025-01-12 13:24:38,370 epochs:400
+2025-01-12 13:24:38,370 use_sgd:False
+2025-01-12 13:24:38,370 weight_decay:0.0001
+2025-01-12 13:24:38,370 lr:0.001
+2025-01-12 13:24:38,370 seed:1
+2025-01-12 13:24:38,370 multi_gpus:False
+2025-01-12 13:24:38,370 test_batch_size:50
+2025-01-12 13:24:38,370 pretrained_model:
+2025-01-12 13:24:38,370 k:15
+2025-01-12 13:24:38,370 block:res
+2025-01-12 13:24:38,370 conv:edge
+2025-01-12 13:24:38,370 act:relu
+2025-01-12 13:24:38,370 norm:batch
+2025-01-12 13:24:38,370 bias:True
+2025-01-12 13:24:38,370 n_blocks:4
+2025-01-12 13:24:38,370 n_filters:64
+2025-01-12 13:24:38,370 emb_dims:1024
+2025-01-12 13:24:38,370 dropout:0.5
+2025-01-12 13:24:38,370 dynamic:True
+2025-01-12 13:24:38,370 fine_tune:False
+2025-01-12 13:24:38,370 fine_tune_num_classes:16
+2025-01-12 13:24:38,370 use_dilation:True
+2025-01-12 13:24:38,370 epsilon:0.2
+2025-01-12 13:24:38,370 use_stochastic:True
+2025-01-12 13:24:38,370 device:cuda
+2025-01-12 13:24:38,370 exp_dir:log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-132438_7da9d1a0-4255-4175-a7a2-d5a8ec0a7947
+2025-01-12 13:24:38,370 ckpt_dir:log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-132438_7da9d1a0-4255-4175-a7a2-d5a8ec0a7947/checkpoint
+2025-01-12 13:24:38,370 code_dir:log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-132438_7da9d1a0-4255-4175-a7a2-d5a8ec0a7947/code
+2025-01-12 13:24:38,370 writer:<torch.utils.tensorboard.writer.SummaryWriter object at 0x7f745eb86b50>
+2025-01-12 13:24:38,370 epoch:-1
+2025-01-12 13:24:38,370 step:-1
+2025-01-12 13:24:38,370 loglevel:info
+2025-01-12 13:24:38,371 ==========     args END    =============
+2025-01-12 13:24:38,371 
+
+2025-01-12 13:24:38,371 ===> Phase is train.
+2025-01-12 13:24:38,376 ===> Creating data-loader ...
+2025-01-12 13:24:42,080 ===> Loading ModelNet40 from /user/ahmed.assy/u12745/Dataset. number of classes equal to 40
+2025-01-12 13:24:42,080 ===> Loading the network ...
