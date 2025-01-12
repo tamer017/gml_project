@@ -384,3 +384,14 @@
 2025-01-12 18:24:16,341 ===> Epoch 29/400, Train Loss 1.6443, Test Overall Acc 0.8983, Test Avg Acc 0.847291, Best Test Overall Acc 0.9032, Its test avg acc 0.8428.
 2025-01-12 18:27:47,698 ===> Epoch 30/400, Train Loss 1.6409, Test Overall Acc 0.8999, Test Avg Acc 0.850174, Best Test Overall Acc 0.9032, Its test avg acc 0.8428.
 2025-01-12 18:31:20,239 ===> Epoch 31/400, Train Loss 1.6350, Test Overall Acc 0.9024, Test Avg Acc 0.860506, Best Test Overall Acc 0.9032, Its test avg acc 0.8428.
+2025-01-12 18:34:51,587 ===> Epoch 32/400, Train Loss 1.6276, Test Overall Acc 0.9024, Test Avg Acc 0.853709, Best Test Overall Acc 0.9032, Its test avg acc 0.8428.
+2025-01-12 18:38:22,544 Got a new best model on Test with Overall ACC 0.9060. Its avg acc is 0.8659
+2025-01-12 18:38:22,852 save a new best model into log/modelnet40_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-163824_98bbfc5c-22d2-43a9-ae5e-038995c9d4a1/checkpoint/modelnet40_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1-best_model.pth
+2025-01-12 18:38:22,852 ===> Epoch 33/400, Train Loss 1.6279, Test Overall Acc 0.9060, Test Avg Acc 0.865936, Best Test Overall Acc 0.9060, Its test avg acc 0.8659.
+2025-01-12 18:41:54,268 Got a new best model on Test with Overall ACC 0.9064. Its avg acc is 0.8570
+2025-01-12 18:41:54,578 save a new best model into log/modelnet40_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-163824_98bbfc5c-22d2-43a9-ae5e-038995c9d4a1/checkpoint/modelnet40_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1-best_model.pth
+2025-01-12 18:41:54,579 ===> Epoch 34/400, Train Loss 1.6152, Test Overall Acc 0.9064, Test Avg Acc 0.857006, Best Test Overall Acc 0.9064, Its test avg acc 0.8570.
+2025-01-12 18:45:25,478 Got a new best model on Test with Overall ACC 0.9157. Its avg acc is 0.8650
+2025-01-12 18:45:25,791 save a new best model into log/modelnet40_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-163824_98bbfc5c-22d2-43a9-ae5e-038995c9d4a1/checkpoint/modelnet40_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1-best_model.pth
+2025-01-12 18:45:25,791 ===> Epoch 35/400, Train Loss 1.6107, Test Overall Acc 0.9157, Test Avg Acc 0.865000, Best Test Overall Acc 0.9157, Its test avg acc 0.8650.
+2025-01-12 18:48:57,287 ===> Epoch 36/400, Train Loss 1.6110, Test Overall Acc 0.9141, Test Avg Acc 0.865337, Best Test Overall Acc 0.9157, Its test avg acc 0.8650.
