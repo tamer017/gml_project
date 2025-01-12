@@ -1,10 +1,21 @@
+# Ignore all Jupyter notebook log files
 *ipynb
+
+# Ignore compiled Python files
 *.pyc
+
+# Ignore Git directory
 .git/
+
+# Ignore IDE settings (e.g., IntelliJ IDEA)
 .idea/
+
+# Ignore checkpoints
 *checkpoints*
+
+# Ignore log files
 *logs*
+gml_project/log/
+
+# Ignore Ibex-specific files or directories
 *ibex
-
-gml_project/log/*
-
