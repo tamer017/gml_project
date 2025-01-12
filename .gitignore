@@ -1,0 +1,10 @@
+*ipynb
+*.pyc
+.git/
+.idea/
+*checkpoints*
+*logs*
+*ibex
+
+gml_project/log
+

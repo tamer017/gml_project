@@ -1,0 +1,173 @@
+2025-01-12 12:13:01,246 saving log, checkpoint and back up code in folder: log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-121301_922e09b4-3bf0-442c-9423-d272b66c453d
+2025-01-12 12:13:01,246 ==========       args      =============
+2025-01-12 12:13:01,246 phase:train
+2025-01-12 12:13:01,246 exp_name:modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1
+2025-01-12 12:13:01,246 job_name:modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-121301_922e09b4-3bf0-442c-9423-d272b66c453d
+2025-01-12 12:13:01,246 use_cpu:False
+2025-01-12 12:13:01,246 root_dir:log
+2025-01-12 12:13:01,246 data_dir:/user/ahmed.assy/u12745/Dataset
+2025-01-12 12:13:01,246 dataset:ModelNet40
+2025-01-12 12:13:01,246 num_points:2048
+2025-01-12 12:13:01,246  :True
+2025-01-12 12:13:01,246 in_channels:3
+2025-01-12 12:13:01,246 batch_size:32
+2025-01-12 12:13:01,247 epochs:400
+2025-01-12 12:13:01,247 use_sgd:False
+2025-01-12 12:13:01,247 weight_decay:0.0001
+2025-01-12 12:13:01,247 lr:0.001
+2025-01-12 12:13:01,247 seed:1
+2025-01-12 12:13:01,247 multi_gpus:False
+2025-01-12 12:13:01,247 test_batch_size:50
+2025-01-12 12:13:01,247 pretrained_model:
+2025-01-12 12:13:01,247 k:15
+2025-01-12 12:13:01,247 block:res
+2025-01-12 12:13:01,247 conv:edge
+2025-01-12 12:13:01,247 act:relu
+2025-01-12 12:13:01,247 norm:batch
+2025-01-12 12:13:01,247 bias:True
+2025-01-12 12:13:01,247 n_blocks:4
+2025-01-12 12:13:01,247 n_filters:64
+2025-01-12 12:13:01,247 emb_dims:1024
+2025-01-12 12:13:01,247 dropout:0.5
+2025-01-12 12:13:01,247 dynamic:False
+2025-01-12 12:13:01,247 fine_tune:False
+2025-01-12 12:13:01,247 fine_tune_num_classes:16
+2025-01-12 12:13:01,247 use_dilation:True
+2025-01-12 12:13:01,247 epsilon:0.2
+2025-01-12 12:13:01,247 use_stochastic:True
+2025-01-12 12:13:01,247 device:cuda
+2025-01-12 12:13:01,247 exp_dir:log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-121301_922e09b4-3bf0-442c-9423-d272b66c453d
+2025-01-12 12:13:01,247 ckpt_dir:log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-121301_922e09b4-3bf0-442c-9423-d272b66c453d/checkpoint
+2025-01-12 12:13:01,247 code_dir:log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-121301_922e09b4-3bf0-442c-9423-d272b66c453d/code
+2025-01-12 12:13:01,247 writer:<torch.utils.tensorboard.writer.SummaryWriter object at 0x7fdcb41c9370>
+2025-01-12 12:13:01,247 epoch:-1
+2025-01-12 12:13:01,247 step:-1
+2025-01-12 12:13:01,248 loglevel:info
+2025-01-12 12:13:01,248 ==========     args END    =============
+2025-01-12 12:13:01,248 
+
+2025-01-12 12:13:01,248 ===> Phase is train.
+2025-01-12 12:13:01,251 ===> Creating data-loader ...
+2025-01-12 12:13:05,108 ===> Loading ModelNet40 from /user/ahmed.assy/u12745/Dataset. number of classes equal to 40
+2025-01-12 12:13:05,108 ===> Loading the network ...
+2025-01-12 12:13:05,388 DeepGCN(
+  (knn): DenseDilatedKnnGraph(
+    (_dilated): DenseDilated()
+  )
+  (head): GraphConv2d(
+    (gconv): EdgeConvLayer(
+      (edge_conv): EdgeConv(nn=BasicLayer(
+        (0): Linear(in_features=6, out_features=64, bias=False)
+        (1): ReLU()
+        (2): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (3): Linear(in_features=64, out_features=64, bias=False)
+        (4): ReLU()
+        (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      ))
+    )
+  )
+  (backbone): Sequential(
+    (0): ResDynBlock2d(
+      (body): DynConv2d(
+        (gconv): EdgeConvLayer(
+          (edge_conv): EdgeConv(nn=BasicLayer(
+            (0): Linear(in_features=128, out_features=64, bias=True)
+            (1): ReLU()
+            (2): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (3): Linear(in_features=64, out_features=64, bias=True)
+            (4): ReLU()
+            (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          ))
+        )
+        (dilated_knn_graph): DenseDilatedKnnGraph(
+          (_dilated): DenseDilated()
+        )
+      )
+    )
+    (1): ResDynBlock2d(
+      (body): DynConv2d(
+        (gconv): EdgeConvLayer(
+          (edge_conv): EdgeConv(nn=BasicLayer(
+            (0): Linear(in_features=128, out_features=64, bias=True)
+            (1): ReLU()
+            (2): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (3): Linear(in_features=64, out_features=64, bias=True)
+            (4): ReLU()
+            (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          ))
+        )
+        (dilated_knn_graph): DenseDilatedKnnGraph(
+          (_dilated): DenseDilated()
+        )
+      )
+    )
+    (2): ResDynBlock2d(
+      (body): DynConv2d(
+        (gconv): EdgeConvLayer(
+          (edge_conv): EdgeConv(nn=BasicLayer(
+            (0): Linear(in_features=128, out_features=64, bias=True)
+            (1): ReLU()
+            (2): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (3): Linear(in_features=64, out_features=64, bias=True)
+            (4): ReLU()
+            (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          ))
+        )
+        (dilated_knn_graph): DenseDilatedKnnGraph(
+          (_dilated): DenseDilated()
+        )
+      )
+    )
+  )
+  (fusion_block): BasicConv(
+    (0): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): LeakyReLU(negative_slope=0.2)
+    (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (prediction): Sequential(
+    (0): BasicConv(
+      (0): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1))
+      (1): LeakyReLU(negative_slope=0.2)
+      (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (3): Dropout2d(p=0.5, inplace=False)
+    )
+    (1): BasicConv(
+      (0): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1))
+      (1): LeakyReLU(negative_slope=0.2)
+      (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (3): Dropout2d(p=0.5, inplace=False)
+    )
+    (2): BasicConv(
+      (0): Conv2d(256, 40, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+)
+2025-01-12 12:13:05,389 ===> loading pre-trained ...
+2025-01-12 12:13:05,389 ===> No pre-trained model
+2025-01-12 12:13:05,389 ===> Init the optimizer ...
+2025-01-12 12:13:05,390 ===> Use AdamW
+2025-01-12 12:13:05,390 ===> Init Metric ...
+2025-01-12 12:13:05,394 ===> start training ...
+2025-01-12 12:14:31,668 Got a new best model on Test with Overall ACC 0.6264. Its avg acc is 0.4914
+2025-01-12 12:14:31,871 save a new best model into log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-121301_922e09b4-3bf0-442c-9423-d272b66c453d/checkpoint/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1-best_model.pth
+2025-01-12 12:14:31,871 ===> Epoch 0/400, Train Loss 3.2083, Test Overall Acc 0.6264, Test Avg Acc 0.491442, Best Test Overall Acc 0.6264, Its test avg acc 0.4914.
+2025-01-12 12:15:57,592 Got a new best model on Test with Overall ACC 0.7220. Its avg acc is 0.5815
+2025-01-12 12:15:57,788 save a new best model into log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-121301_922e09b4-3bf0-442c-9423-d272b66c453d/checkpoint/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1-best_model.pth
+2025-01-12 12:15:57,788 ===> Epoch 1/400, Train Loss 2.5162, Test Overall Acc 0.7220, Test Avg Acc 0.581459, Best Test Overall Acc 0.7220, Its test avg acc 0.5815.
+2025-01-12 12:17:23,590 Got a new best model on Test with Overall ACC 0.7832. Its avg acc is 0.6557
+2025-01-12 12:17:23,785 save a new best model into log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-121301_922e09b4-3bf0-442c-9423-d272b66c453d/checkpoint/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1-best_model.pth
+2025-01-12 12:17:23,785 ===> Epoch 2/400, Train Loss 2.2653, Test Overall Acc 0.7832, Test Avg Acc 0.655692, Best Test Overall Acc 0.7832, Its test avg acc 0.6557.
+2025-01-12 12:18:49,794 ===> Epoch 3/400, Train Loss 2.0975, Test Overall Acc 0.7622, Test Avg Acc 0.659919, Best Test Overall Acc 0.7832, Its test avg acc 0.6557.
+2025-01-12 12:20:15,802 Got a new best model on Test with Overall ACC 0.8375. Its avg acc is 0.7369
+2025-01-12 12:20:15,998 save a new best model into log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-121301_922e09b4-3bf0-442c-9423-d272b66c453d/checkpoint/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1-best_model.pth
+2025-01-12 12:20:15,999 ===> Epoch 4/400, Train Loss 1.9879, Test Overall Acc 0.8375, Test Avg Acc 0.736942, Best Test Overall Acc 0.8375, Its test avg acc 0.7369.
+2025-01-12 12:21:41,638 ===> Epoch 5/400, Train Loss 1.9292, Test Overall Acc 0.8375, Test Avg Acc 0.735494, Best Test Overall Acc 0.8375, Its test avg acc 0.7369.
+2025-01-12 12:23:07,245 Got a new best model on Test with Overall ACC 0.8400. Its avg acc is 0.7527
+2025-01-12 12:23:07,439 save a new best model into log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-121301_922e09b4-3bf0-442c-9423-d272b66c453d/checkpoint/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1-best_model.pth
+2025-01-12 12:23:07,439 ===> Epoch 6/400, Train Loss 1.8787, Test Overall Acc 0.8400, Test Avg Acc 0.752686, Best Test Overall Acc 0.8400, Its test avg acc 0.7527.
+2025-01-12 12:24:33,114 Got a new best model on Test with Overall ACC 0.8513. Its avg acc is 0.7684
+2025-01-12 12:24:33,309 save a new best model into log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-121301_922e09b4-3bf0-442c-9423-d272b66c453d/checkpoint/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1-best_model.pth
+2025-01-12 12:24:33,310 ===> Epoch 7/400, Train Loss 1.8415, Test Overall Acc 0.8513, Test Avg Acc 0.768390, Best Test Overall Acc 0.8513, Its test avg acc 0.7684.
+2025-01-12 12:25:59,090 Got a new best model on Test with Overall ACC 0.8655. Its avg acc is 0.7841
+2025-01-12 12:25:59,285 save a new best model into log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-121301_922e09b4-3bf0-442c-9423-d272b66c453d/checkpoint/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1-best_model.pth
+2025-01-12 12:25:59,285 ===> Epoch 8/400, Train Loss 1.8091, Test Overall Acc 0.8655, Test Avg Acc 0.784052, Best Test Overall Acc 0.8655, Its test avg acc 0.7841.
