@@ -1,0 +1,320 @@
+2025-01-25 12:56:19,727 saving log, checkpoint and back up code in folder: log/shapenetpart_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250125-125619_f6a53922-fe97-4f8d-b392-e9ffdbc0c1c3
+2025-01-25 12:56:19,727 ==========       args      =============
+2025-01-25 12:56:19,728 phase:train
+2025-01-25 12:56:19,728 exp_name:shapenetpart_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1
+2025-01-25 12:56:19,728 job_name:shapenetpart_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250125-125619_f6a53922-fe97-4f8d-b392-e9ffdbc0c1c3
+2025-01-25 12:56:19,728 use_cpu:False
+2025-01-25 12:56:19,728 root_dir:log
+2025-01-25 12:56:19,728 data_dir:Dataset
+2025-01-25 12:56:19,728 dataset:ShapeNetPart
+2025-01-25 12:56:19,728 num_points:2048
+2025-01-25 12:56:19,728  :True
+2025-01-25 12:56:19,728 in_channels:3
+2025-01-25 12:56:19,728 batch_size:32
+2025-01-25 12:56:19,728 epochs:400
+2025-01-25 12:56:19,728 use_sgd:False
+2025-01-25 12:56:19,728 weight_decay:0.0001
+2025-01-25 12:56:19,728 lr:0.001
+2025-01-25 12:56:19,728 seed:1
+2025-01-25 12:56:19,728 multi_gpus:False
+2025-01-25 12:56:19,728 test_batch_size:50
+2025-01-25 12:56:19,728 pretrained_model:
+2025-01-25 12:56:19,728 k:15
+2025-01-25 12:56:19,728 block:res
+2025-01-25 12:56:19,728 conv:edge
+2025-01-25 12:56:19,728 act:relu
+2025-01-25 12:56:19,728 norm:batch
+2025-01-25 12:56:19,728 bias:True
+2025-01-25 12:56:19,728 n_blocks:14
+2025-01-25 12:56:19,728 n_filters:64
+2025-01-25 12:56:19,728 emb_dims:1024
+2025-01-25 12:56:19,728 dropout:0.5
+2025-01-25 12:56:19,728 dynamic:True
+2025-01-25 12:56:19,728 fine_tune:False
+2025-01-25 12:56:19,728 fine_tune_num_classes:16
+2025-01-25 12:56:19,728 use_dilation:True
+2025-01-25 12:56:19,729 epsilon:0.2
+2025-01-25 12:56:19,729 use_stochastic:True
+2025-01-25 12:56:19,729 device:cuda
+2025-01-25 12:56:19,729 exp_dir:log/shapenetpart_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250125-125619_f6a53922-fe97-4f8d-b392-e9ffdbc0c1c3
+2025-01-25 12:56:19,729 ckpt_dir:log/shapenetpart_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250125-125619_f6a53922-fe97-4f8d-b392-e9ffdbc0c1c3/checkpoint
+2025-01-25 12:56:19,729 code_dir:log/shapenetpart_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250125-125619_f6a53922-fe97-4f8d-b392-e9ffdbc0c1c3/code
+2025-01-25 12:56:19,729 writer:<torch.utils.tensorboard.writer.SummaryWriter object at 0x14e8205a9d60>
+2025-01-25 12:56:19,729 epoch:-1
+2025-01-25 12:56:19,729 step:-1
+2025-01-25 12:56:19,729 loglevel:info
+2025-01-25 12:56:19,729 ==========     args END    =============
+2025-01-25 12:56:19,729 
+
+2025-01-25 12:56:19,729 ===> Phase is train.
+2025-01-25 12:56:19,733 ===> Creating data-loader ...
+2025-01-25 12:57:07,634 ===> Loading ShapeNetPart from Dataset. number of classes equal to 16
+2025-01-25 12:57:07,635 ===> Loading the network ...
+2025-01-25 12:57:07,894 DeepGCN(
+  (dynamic_head): DynamicEdgeConvLayer(
+    (mlp): Sequential(
+      (0): Linear(in_features=6, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=64, out_features=64, bias=True)
+      (3): ReLU()
+    )
+    (conv): DynamicEdgeConv(nn=Sequential(
+      (0): Linear(in_features=6, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=64, out_features=64, bias=True)
+      (3): ReLU()
+    ), k=15)
+    (norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (backbone): Sequential(
+    (0): ResDynBlock2d(
+      (body): DynamicEdgeConvLayer(
+        (mlp): Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        )
+        (conv): DynamicEdgeConv(nn=Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        ), k=15)
+        (norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): ResDynBlock2d(
+      (body): DynamicEdgeConvLayer(
+        (mlp): Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        )
+        (conv): DynamicEdgeConv(nn=Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        ), k=15)
+        (norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (2): ResDynBlock2d(
+      (body): DynamicEdgeConvLayer(
+        (mlp): Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        )
+        (conv): DynamicEdgeConv(nn=Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        ), k=15)
+        (norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (3): ResDynBlock2d(
+      (body): DynamicEdgeConvLayer(
+        (mlp): Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        )
+        (conv): DynamicEdgeConv(nn=Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        ), k=15)
+        (norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (4): ResDynBlock2d(
+      (body): DynamicEdgeConvLayer(
+        (mlp): Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        )
+        (conv): DynamicEdgeConv(nn=Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        ), k=15)
+        (norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (5): ResDynBlock2d(
+      (body): DynamicEdgeConvLayer(
+        (mlp): Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        )
+        (conv): DynamicEdgeConv(nn=Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        ), k=15)
+        (norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (6): ResDynBlock2d(
+      (body): DynamicEdgeConvLayer(
+        (mlp): Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        )
+        (conv): DynamicEdgeConv(nn=Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        ), k=15)
+        (norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (7): ResDynBlock2d(
+      (body): DynamicEdgeConvLayer(
+        (mlp): Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        )
+        (conv): DynamicEdgeConv(nn=Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        ), k=15)
+        (norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (8): ResDynBlock2d(
+      (body): DynamicEdgeConvLayer(
+        (mlp): Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        )
+        (conv): DynamicEdgeConv(nn=Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        ), k=15)
+        (norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (9): ResDynBlock2d(
+      (body): DynamicEdgeConvLayer(
+        (mlp): Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        )
+        (conv): DynamicEdgeConv(nn=Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        ), k=15)
+        (norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (10): ResDynBlock2d(
+      (body): DynamicEdgeConvLayer(
+        (mlp): Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        )
+        (conv): DynamicEdgeConv(nn=Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        ), k=15)
+        (norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (11): ResDynBlock2d(
+      (body): DynamicEdgeConvLayer(
+        (mlp): Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        )
+        (conv): DynamicEdgeConv(nn=Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        ), k=15)
+        (norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (12): ResDynBlock2d(
+      (body): DynamicEdgeConvLayer(
+        (mlp): Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        )
+        (conv): DynamicEdgeConv(nn=Sequential(
+          (0): Linear(in_features=128, out_features=64, bias=True)
+          (1): ReLU()
+          (2): Linear(in_features=64, out_features=64, bias=True)
+          (3): ReLU()
+        ), k=15)
+        (norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (fusion_block): BasicConv(
+    (0): Conv2d(896, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): LeakyReLU(negative_slope=0.2)
+    (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (prediction): Sequential(
+    (0): BasicConv(
+      (0): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1))
+      (1): LeakyReLU(negative_slope=0.2)
+      (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (3): Dropout2d(p=0.5, inplace=False)
+    )
+    (1): BasicConv(
+      (0): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1))
+      (1): LeakyReLU(negative_slope=0.2)
+      (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (3): Dropout2d(p=0.5, inplace=False)
+    )
+    (2): BasicConv(
+      (0): Conv2d(256, 16, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+)
+2025-01-25 12:57:07,896 ===> loading pre-trained ...
+2025-01-25 12:57:07,896 ===> No pre-trained model
+2025-01-25 12:57:07,896 ===> Init the optimizer ...
+2025-01-25 12:57:07,896 ===> Use AdamW
+2025-01-25 12:57:07,897 ===> Init Metric ...
+2025-01-25 12:57:07,899 ===> start training ...

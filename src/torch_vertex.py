@@ -123,41 +123,53 @@ class EdgeConvLayer(nn.Module):
    
 
 class GraphTransformerLayer(nn.Module):
-    def __init__(self, in_channels, out_channels, edge_dim=None):
-        """
-        Graph Transformer Layer using TransformerConv.
-
-        Args:
-            in_channels (int): Input feature size.
-            out_channels (int): Output feature size.
-            edge_dim (int, optional): Size of edge features (if used). Defaults to None.
-        """
+    def __init__(self, in_channels, out_channels, edge_dim=None, heads=4, dropout=0.2):
         super(GraphTransformerLayer, self).__init__()
-        self.transformer = TransformerConv(in_channels, out_channels, edge_dim=edge_dim)
+        
+        # TransformerConv for attention mechanism
+        self.transformer = TransformerConv(
+            in_channels,
+            out_channels // heads,
+            edge_dim=edge_dim,
+            heads=heads,
+            dropout=dropout
+        )
+        # self.norm = nn.BatchNorm1d(out_channels)
+        
+        # Feed-forward network
+        self.feed_forward = nn.Sequential(
+            nn.Linear(out_channels, out_channels * 2),
+            nn.ReLU() ,
+            nn.Dropout(dropout),
+            nn.Linear(out_channels * 2, out_channels)
+        )
+        
+        # Optional activation after the FFN
+        self.activation = nn.ReLU()
 
     def forward(self, x, edge_index, edge_attr=None):
-        """
-        Forward pass for the Graph Transformer layer.
-
-        Args:
-            x (torch.Tensor): Node feature matrix [B, C, N, 1].
-            edge_index (torch.Tensor): Edge indices of shape [2, B, N, l].
-            edge_attr (torch.Tensor, optional): Edge feature matrix [num_edges, edge_feat_dim].
-
-        Returns:
-            torch.Tensor: Updated node features of shape [B, C_out, N, 1].
-        """
-        # Ensure edge_index has the correct shape
-        edge_index = convert_idx_to_edge_index(edge_index)  # [2, num_edges]
-        
-        # Reshape node feature matrix
+        # Reshape node features
         B, C, N, _ = x.shape
-        x = x.squeeze(-1).permute(0, 2, 1).reshape(B * N, C)  # [B*N, C]
+        x = x.squeeze(-1).permute(0, 2, 1).reshape(B * N, C)
+
+        # Ensure edge_index has the correct dimensions
+        if edge_index.dim() == 4:
+            edge_index = edge_index.permute(1, 0, 2, 3).reshape(2, -1)
+        elif edge_index.dim() == 3:
+            edge_index = edge_index.permute(1, 0, 2).reshape(2, -1)
+
+        # Attention mechanism via TransformerConv
+        out = self.transformer(x, edge_index, edge_attr)  # Shape: [B*N, out_channels]
+
+        # out = self.norm(out)
+
+        # Feed-forward processing
+        out = self.feed_forward(out)  # Shape: [B*N, out_channels]
         
-        # Apply TransformerConv
-        out = self.transformer(x, edge_index, edge_attr)  # Output shape [B*N, out_channels]
-        
-        # Reshape back to [B, C_out, N, 1]
+        # Optional non-linearity
+        out = self.activation(out)
+
+        # Reshape back to [B, out_channels, N, 1]
         out_channels = out.shape[1]
         out = out.view(B, N, out_channels).permute(0, 2, 1).unsqueeze(-1)
         return out
@@ -240,7 +252,11 @@ class DenseDynBlock2d(nn.Module):
     def __init__(self, in_channels, out_channels=64,  kernel_size=9, dilation=1, conv='edge',
                  act='relu', norm=None,bias=True, stochastic=False, epsilon=0.0, knn='matrix', dynamic=True):
         super(DenseDynBlock2d, self).__init__()
-        if dynamic == True:
+        if conv == 'trans':
+            self.body = DynConv2d(in_channels, out_channels, kernel_size, dilation, conv,
+                              act, norm, bias, stochastic, epsilon, knn)
+
+        elif dynamic == True:
             self.body = DynamicEdgeConvLayer(in_channels, in_channels, kernel_size, act, norm, bias)
         else:
             self.body = DynConv2d(in_channels, out_channels, kernel_size, dilation, conv,

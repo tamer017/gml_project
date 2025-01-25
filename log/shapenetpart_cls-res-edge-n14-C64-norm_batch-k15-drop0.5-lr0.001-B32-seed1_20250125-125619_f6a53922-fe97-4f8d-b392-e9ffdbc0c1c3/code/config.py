@@ -28,7 +28,7 @@ class OptInit:
         # ----------------- Dataset related
         parser.add_argument('--data_dir', type=str, default='Dataset',
                             help="data dir, will download dataset here automatically")
-        parser.add_argument('--dataset', type=str, default='ModelNet40',
+        parser.add_argument('--dataset', type=str, default='ShapeNetPart',
                             help="choose dataset ModelNet40 or ShapeNetPart")
         parser.add_argument('--num_points', type=int, default=2048,
                             help='num of points to use')

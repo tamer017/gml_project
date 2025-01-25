@@ -1,0 +1,50 @@
+2025-01-25 12:53:37,420 saving log, checkpoint and back up code in folder: log/shapenetpart_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250125-125337_e68409fe-f4c1-4fe1-b54e-ba0eb5b178da
+2025-01-25 12:53:37,420 ==========       args      =============
+2025-01-25 12:53:37,420 phase:train
+2025-01-25 12:53:37,420 exp_name:shapenetpart_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1
+2025-01-25 12:53:37,420 job_name:shapenetpart_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250125-125337_e68409fe-f4c1-4fe1-b54e-ba0eb5b178da
+2025-01-25 12:53:37,420 use_cpu:False
+2025-01-25 12:53:37,420 root_dir:log
+2025-01-25 12:53:37,420 data_dir:Dataset
+2025-01-25 12:53:37,420 dataset:ShapeNetPart
+2025-01-25 12:53:37,420 num_points:2048
+2025-01-25 12:53:37,420  :True
+2025-01-25 12:53:37,420 in_channels:3
+2025-01-25 12:53:37,420 batch_size:32
+2025-01-25 12:53:37,420 epochs:400
+2025-01-25 12:53:37,420 use_sgd:False
+2025-01-25 12:53:37,420 weight_decay:0.0001
+2025-01-25 12:53:37,421 lr:0.001
+2025-01-25 12:53:37,421 seed:1
+2025-01-25 12:53:37,421 multi_gpus:False
+2025-01-25 12:53:37,421 test_batch_size:50
+2025-01-25 12:53:37,421 pretrained_model:
+2025-01-25 12:53:37,421 k:15
+2025-01-25 12:53:37,421 block:res
+2025-01-25 12:53:37,421 conv:edge
+2025-01-25 12:53:37,421 act:relu
+2025-01-25 12:53:37,421 norm:batch
+2025-01-25 12:53:37,421 bias:True
+2025-01-25 12:53:37,421 n_blocks:14
+2025-01-25 12:53:37,421 n_filters:64
+2025-01-25 12:53:37,421 emb_dims:1024
+2025-01-25 12:53:37,421 dropout:0.5
+2025-01-25 12:53:37,421 dynamic:True
+2025-01-25 12:53:37,421 fine_tune:False
+2025-01-25 12:53:37,421 fine_tune_num_classes:16
+2025-01-25 12:53:37,421 use_dilation:True
+2025-01-25 12:53:37,421 epsilon:0.2
+2025-01-25 12:53:37,421 use_stochastic:True
+2025-01-25 12:53:37,421 device:cuda
+2025-01-25 12:53:37,421 exp_dir:log/shapenetpart_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250125-125337_e68409fe-f4c1-4fe1-b54e-ba0eb5b178da
+2025-01-25 12:53:37,421 ckpt_dir:log/shapenetpart_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250125-125337_e68409fe-f4c1-4fe1-b54e-ba0eb5b178da/checkpoint
+2025-01-25 12:53:37,421 code_dir:log/shapenetpart_cls-res-edge-n14-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250125-125337_e68409fe-f4c1-4fe1-b54e-ba0eb5b178da/code
+2025-01-25 12:53:37,421 writer:<torch.utils.tensorboard.writer.SummaryWriter object at 0x14fa1f268ca0>
+2025-01-25 12:53:37,421 epoch:-1
+2025-01-25 12:53:37,421 step:-1
+2025-01-25 12:53:37,421 loglevel:info
+2025-01-25 12:53:37,422 ==========     args END    =============
+2025-01-25 12:53:37,422 
+
+2025-01-25 12:53:37,422 ===> Phase is train.
+2025-01-25 12:53:37,426 ===> Creating data-loader ...

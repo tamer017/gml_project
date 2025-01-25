@@ -26,7 +26,7 @@ class OptInit:
         parser.add_argument('--root_dir', type=str, default='log', help='the dir of all experiment results, ckpt and logs')
 
         # ----------------- Dataset related
-        parser.add_argument('--data_dir', type=str, default='Dataset',
+        parser.add_argument('--data_dir', type=str, default='.Dataset',
                             help="data dir, will download dataset here automatically")
         parser.add_argument('--dataset', type=str, default='ModelNet40',
                             help="choose dataset ModelNet40 or ShapeNetPart")

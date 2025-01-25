@@ -116,4 +116,38 @@ class DeepGCN(torch.nn.Module):
             raise ValueError(f"Unsupported layer type: {type(last_layer)}")
 
 
+if __name__ == '__main__':
+    import argparse
+    parser = argparse.ArgumentParser(description='Point Cloud Segmentation')
+    # ----------------- Model related
+    parser.add_argument('--k', default=9, type=int, help='neighbor num (default:9)')
+    parser.add_argument('--block', default='res', type=str, help='graph backbone block type {res, plain, dense}')
+    parser.add_argument('--conv', default='edge', type=str, help='graph conv layer {edge, mr}')
+    parser.add_argument('--act', default='relu', type=str, help='activation layer {relu, prelu, leakyrelu}')
+    parser.add_argument('--norm', default='batch', type=str,
+                        help='batch or instance normalization {batch, instance}')
+    parser.add_argument('--bias', default=True, type=bool, help='bias of conv layer True or False')
+    parser.add_argument('--n_blocks', type=int, default=14, help='number of basic blocks in the backbone')
+    parser.add_argument('--n_filters', default=64, type=int, help='number of channels of deep features')
+    parser.add_argument('--in_channels', type=int, default=3, help='Dimension of input ')
+    parser.add_argument('--n_classes', type=int, default=40, help='Dimension of out_channels ')
+    parser.add_argument('--emb_dims', type=int, default=1024, metavar='N', help='Dimension of embeddings')
+    parser.add_argument('--dropout', type=float, default=0.5, help='dropout rate')
+    # dilated knn
+    parser.add_argument('--use_dilation', default=True, type=bool, help='use dilated knn or not')
+    parser.add_argument('--epsilon', default=0.2, type=float, help='stochastic epsilon for gcn')
+    parser.add_argument('--use_stochastic', default=True, type=bool, help='stochastic for gcn, True or False')
+
+    args = parser.parse_args()
+    args.device = torch.device('cuda')
+
+    feats = torch.rand((2, 3, 1024, 1), dtype=torch.float).to(args.device)
+    num_neighbors = 20
+
+    print('Input size {}'.format(feats.size()))
+    net = DeepGCN(args).to(args.device)
+    out = net(feats)
+    print(net)
+    print('Output size {}'.format(out.size()))
+
 

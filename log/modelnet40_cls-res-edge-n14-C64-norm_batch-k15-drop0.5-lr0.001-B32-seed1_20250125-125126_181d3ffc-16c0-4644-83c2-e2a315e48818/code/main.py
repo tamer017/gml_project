@@ -12,8 +12,6 @@ from src import load_pretrained_models, load_pretrained_optimizer
 from torchmetrics import MeanMetric 
 from data import ModelNet40, ShapeNetPart
 from tqdm import tqdm
-from torchsummary import summary
-
 
 def train(model, train_loader, test_loader, opt):
     logging.info('===> Init the optimizer ...')
@@ -25,10 +23,8 @@ def train(model, train_loader, test_loader, opt):
         logging.info("===> Use AdamW")
         optimizer = torch.optim.AdamW(model.parameters(), lr=opt.lr, weight_decay=opt.weight_decay)
 
-
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, opt.epochs, eta_min=opt.lr)
-    if opt.n_classes == opt.fine_tune_num_classes:
-        optimizer, scheduler, opt.lr = load_pretrained_optimizer(opt.pretrained_model, optimizer, scheduler, opt.lr)
+    optimizer, scheduler, opt.lr = load_pretrained_optimizer(opt.pretrained_model, optimizer, scheduler, opt.lr)
 
     logging.info('===> Init Metric ...')
     opt.train_losses = MeanMetric()
@@ -152,15 +148,6 @@ def save_ckpt(model, optimizer, scheduler, opt, name_post):
     logging.info('save a new best model into {}'.format(filename))
 
 
-def print_model_parameters(model):
-    print("Model Parameters:")
-    for name, param in model.named_parameters():
-        print(f"Name: {name}")
-        print(f"Shape: {param.shape}")
-        print(f"Requires Grad: {param.requires_grad}")
-        print(f"Device: {param.device}")
-        print("-" * 50)
-
 if __name__ == '__main__':
     warnings.filterwarnings("ignore")
     opt = OptInit().get_args()
@@ -187,39 +174,19 @@ if __name__ == '__main__':
     logging.info('===> Loading {} from {}. number of classes equal to {}'.format(opt.dataset, opt.data_dir, opt.n_classes))
 
     logging.info('===> Loading the network ...')
-
-    print(train_loader.dataset.num_classes())
-    # opt.n_classes = 40
-
-
     model = DeepGCN(opt)
-    logging.info(summary(model))
-
     if opt.multi_gpus:
         model = nn.DataParallel(model)
     model = model.to(opt.device)
     logging.info(model)
 
-    print_model_parameters(model)
-    
-
-    print("first model"*50)
-
     logging.info('===> loading pre-trained ...')
-    
     model, opt.best_value, opt.epoch = load_pretrained_models(model, opt.pretrained_model, opt.phase)
-
-
     
     if opt.fine_tune == True:
         opt.n_classes = train_loader.dataset.num_classes()
-
-        # model = add_new_layer(model, opt.n_classes)
         model.module.update_num_classes(opt.n_classes)
-    print(model)
-    print_model_parameters(model)
-    print("Second model"*50)
-
+        print(model)
 
     if opt.phase == 'train':
         train(model, train_loader, test_loader, opt)

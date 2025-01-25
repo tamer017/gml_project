@@ -15,7 +15,10 @@
 
 # Ignore log files
 *logs*
-gml_project/log/
+.log/
 
 # Ignore Ibex-specific files or directories
 *ibex
+
+.Dataset/
+
