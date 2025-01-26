@@ -1,4 +1,4 @@
-# Ignore all Jupyter notebook checkpoint directories
+# Ignore Jupyter notebook checkpoints
 .ipynb_checkpoints/
 
 # Ignore compiled Python files
@@ -6,10 +6,7 @@
 *.pyo
 __pycache__/
 
-# Ignore Git directory (should not be included in .gitignore)
-# .git/
-
-# Ignore IDE settings (e.g., IntelliJ IDEA)
+# Ignore IDE settings
 .idea/
 
 # Ignore checkpoints
@@ -19,22 +16,16 @@ __pycache__/
 *.log
 logs/
 
-# Ignore Ibex-specific files or directories
+# Ignore Ibex-specific files
 *ibex*
 
-# Ignore specific dataset-related directories
+# Ignore macOS system files
 .DS_Store
+
+# Ignore dataset directories
 .Datasets/
-
-# Ignore all .h5 files (common for datasets)
-*.h5
-
-# Ignore all .pth files (model checkpoints)
-*.pth
-
-# Ignore Dataset directory
 Dataset/
 
-# You can also ignore other large files like logs or checkpoints
-*checkpoints*
-*logs*
+# Ignore common dataset/model files
+*.h5
+*.pth
