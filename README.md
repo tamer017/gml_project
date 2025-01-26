@@ -34,7 +34,9 @@
 ---
 
 ## Introduction
-This project aims to classify 3D point clouds using Graph Neural Networks (GNNs). Point clouds are a common representation of 3D data, and their irregular structure makes them challenging to process with traditional deep learning methods. We explore graph-based approaches to capture the local and global structures of point clouds effectively.
+This project focuses on **3D point cloud classification** using **Graph Neural Networks (GNNs)**. Point clouds, which represent 3D objects as sets of points, are challenging to process due to their irregular and unordered structure. To address this, we use graph-based methods like **EdgeConv** and **Graph Transformers** to capture both local and global relationships between points.
+
+Our approach leverages the **ModelNet40 dataset**, a benchmark for 3D shape recognition, and achieves competitive results. We also explore fine-tuning on the **ShapeNetPart dataset** to evaluate generalization. Implemented with **PyTorch** and **PyTorch Geometric**, the project provides a modular framework for experimenting with GNN architectures and datasets.
 
 ---
 
