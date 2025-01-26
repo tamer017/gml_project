@@ -260,5 +260,5 @@ This project is part of our research in Graph Machine Learning. We aim to explor
 ## Contact
 For any questions or feedback, feel free to reach out to us:
 - **Ahmed Assy**: [ahmed.assy@stud.uni-goettingen.de](mailto:ahmed.assy@stud.uni-goettingen.de)
-- **Mahmoud Abdellatif**: [mahmoud.abdellahi@stud.uni-goettingen.de](mailto:mahmoud.abdellahi@stud.uni-goettingen.de)
+- **Mahmoud Abdellahi**: [mahmoud.abdellahi@stud.uni-goettingen.de](mailto:mahmoud.abdellahi@stud.uni-goettingen.de)
 
