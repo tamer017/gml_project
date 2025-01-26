@@ -41,18 +41,36 @@ This project aims to classify 3D point clouds using Graph Neural Networks (GNNs)
 ## Background
 
 ### Point Clouds
-Point clouds are collections of points in 3D space, often representing the surface of objects. They are widely used in applications like autonomous driving, robotics, and 3D modeling. Point clouds are typically collected using LiDAR sensors or generated from CAD models.
+Point clouds are collections of data points in a three-dimensional (3D) space, typically representing the surface of an object or environment. Each point in a point cloud is defined by its coordinates $$(x, y, z)$$ in 3D space and may also include additional attributes such as color, intensity, or normal vectors. Point clouds are commonly generated using 3D scanning technologies, such as **LiDAR (Light Detection and Ranging)**, **structured light scanners**, or **photogrammetry**. LiDAR systems emit laser pulses and measure the time it takes for the light to reflect back, creating precise distance measurements that form the point cloud. Structured light scanners project a pattern of light onto an object and use cameras to capture the distortions in the pattern, which are then converted into 3D points. Photogrammetry, on the other hand, uses multiple 2D images taken from different angles to reconstruct the 3D geometry of an object or scene. Point clouds are widely used in applications such as autonomous driving, robotics, augmented reality, and 3D modeling, as they provide a detailed and accurate representation of real-world environments.
+![image](https://github.com/user-attachments/assets/ff771566-3dd2-4827-9017-4ee0b46b5877)
+
 
 ### ModelNet40 Dataset
-The **ModelNet40** dataset is a widely used benchmark for 3D object classification. It contains 12,311 CAD models across 40 categories, such as chairs, tables, and cars. The dataset is split into:
-- **Training set**: 9,843 models
-- **Test set**: 2,485 models
+The **ModelNet40** dataset is a widely used benchmark for 3D shape recognition and classification. It consists of 12,311 3D models across 40 common object categories, such as tables, chairs, airplanes, and cars. Each model is represented as a point cloud, making it ideal for training and evaluating machine learning models for 3D shape analysis tasks like classification, segmentation, and retrieval.
+
+This project provides a Python script (`dataset.py`) that handles **downloading**, **loading**, and **processing** the ModelNet40 dataset. The script also includes a PyTorch-compatible dataset loader for seamless integration into machine learning workflows.
 
 ---
 
-It seems like the LaTeX equations are not rendering correctly in your output. This is likely because GitHub Markdown does not natively support LaTeX rendering. However, you can still use LaTeX syntax for equations, and they will render correctly in environments that support LaTeX (e.g., Jupyter Notebooks, Overleaf, or other Markdown editors with LaTeX support).
+#### About the Dataset
+- **Number of Models**: 12,311
+- **Number of Classes**: 40
+- **Training Set**: 9,843 models
+- **Test Set**: 2,468 models
+- **Point Cloud Size**: 2,048 points per model
 
-If you want to ensure the equations are readable in GitHub Markdown, you can use **plain text formatting** for the equations instead of LaTeX. Here's the updated **Methods** section with plain text formatting for the equations:
+##### Who Collected It?
+The ModelNet40 dataset was created by researchers at **Princeton University**, including **Zhirong Wu**, **Shuran Song**, **Aditya Khosla**, **Xiaoou Tang**, and **Jianxiong Xiao**.
+
+##### How Was It Collected?
+The dataset was generated from 3D CAD models, which were collected from online repositories and manually aligned to ensure consistency. Each model was converted into a point cloud representation, making it suitable for 3D deep learning tasks.
+
+##### When Was It Created?
+The dataset was introduced in 2015 as part of the **3D ShapeNets** project.
+
+##### Why Was It Developed?
+ModelNet40 was created to address the lack of large-scale, well-organized 3D shape datasets for training and evaluating machine learning models. It has since become a standard benchmark for 3D shape analysis tasks, enabling advancements in 3D object recognition, segmentation, and retrieval.
+
 
 ---
 
