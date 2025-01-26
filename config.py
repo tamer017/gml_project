@@ -26,7 +26,7 @@ class OptInit:
         parser.add_argument('--root_dir', type=str, default='log', help='the dir of all experiment results, ckpt and logs')
 
         # ----------------- Dataset related
-        parser.add_argument('--data_dir', type=str, default='/user/ahmed.assy/u12745/Dataset',
+        parser.add_argument('--data_dir', type=str, default='Dataset',
                             help="data dir, will download dataset here automatically")
         parser.add_argument('--dataset', type=str, default='ModelNet40',
                             help="choose dataset ModelNet40 or ShapeNetPart")
@@ -66,12 +66,12 @@ class OptInit:
         parser.add_argument('--n_filters', default=64, type=int, help='number of channels of deep features')
         parser.add_argument('--emb_dims', type=int, default=1024, metavar='N', help='Dimension of embeddings')
         parser.add_argument('--dropout', type=float, default=0.5, help='dropout rate')
-        parser.add_argument('--dynamic', default=True, type=bool, help='use dynamic graph True or False')
+        parser.add_argument('--dynamic', default=False, type=bool, help='use dynamic graph True or False')
 
         # ----------------- Fine-tuning related
         parser.add_argument('--fine_tune', default=False, type=bool, help='fine-tuning True or False')
-        parser.add_argument('--fine_tune_num_classes', type=int, default=16, metavar='N',
-                            help='number of classes for fine-tuning (default: 16)')
+        parser.add_argument('--fine_tune_num_classes', type=int, default=40, metavar='N',
+                            help='number of classes for fine-tuning (default: 40)')
 
         # dilated knn
         parser.add_argument('--no_dilation', action="store_false", dest="use_dilation",
