@@ -330,6 +330,8 @@ Data augmentation is a crucial technique in machine learning, especially when wo
 
 ---
 ## Experiments
+![concate](https://github.com/user-attachments/assets/d0523993-d23b-4349-ab7b-1f557bfd394c)
+
 <details>
 
 <summary>Experiment 1</summary>
