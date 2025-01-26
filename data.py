@@ -72,18 +72,6 @@ def translate_pointcloud(pointcloud):
     translated_pointcloud = np.add(np.multiply(pointcloud, scale), shift).astype('float32')
     return translated_pointcloud
 
-def rotate_pointcloud(pointcloud):
-    theta = np.random.uniform(0, 2 * np.pi)
-    rotation_matrix = np.array([
-        [np.cos(theta), -np.sin(theta), 0],
-        [np.sin(theta), np.cos(theta), 0],
-        [0, 0, 1]
-    ])
-    return np.dot(pointcloud, rotation_matrix)
-
-def jitter_pointcloud(pointcloud, sigma=0.01, clip=0.05):
-    noise = np.clip(sigma * np.random.randn(*pointcloud.shape), -clip, clip)
-    return pointcloud + noise
 
 
 class ModelNet40(Dataset):
@@ -110,22 +98,7 @@ class ModelNet40(Dataset):
             np.random.shuffle(pointcloud)
         return pointcloud, label
         
-    # def __getitem__(self, item):
-    #     pointcloud = self.data[item][:self.num_points]
-    #     label = self.label[item]
-
-    #     # Normalize point cloud
-    #     pointcloud = self.normalize_pointcloud(pointcloud)
-
-    #     # Apply augmentations if in training mode
-    #     if self.partition == 'train':
-    #         pointcloud = translate_pointcloud(pointcloud)
-    #         pointcloud = rotate_pointcloud(pointcloud)
-    #         pointcloud = jitter_pointcloud(pointcloud)
-    #         np.random.shuffle(pointcloud)
-
-    #     return torch.tensor(pointcloud, dtype=torch.float32), torch.tensor(label, dtype=torch.long)
-    
+  
     @staticmethod
     def normalize_pointcloud(pointcloud):
         """
