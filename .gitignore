@@ -1,11 +1,13 @@
-# Ignore all Jupyter notebook log files
-*ipynb
+# Ignore all Jupyter notebook checkpoint directories
+.ipynb_checkpoints/
 
 # Ignore compiled Python files
 *.pyc
+*.pyo
+__pycache__/
 
-# Ignore Git directory
-.git/
+# Ignore Git directory (should not be included in .gitignore)
+# .git/
 
 # Ignore IDE settings (e.g., IntelliJ IDEA)
 .idea/
@@ -14,11 +16,12 @@
 *checkpoints*
 
 # Ignore log files
-*logs*
-.log/
+*.log
+logs/
 
 # Ignore Ibex-specific files or directories
-*ibex
+*ibex*
 
-.Dataset/
-
+# Ignore specific dataset-related directories
+.DS_Store
+.Datasets/
