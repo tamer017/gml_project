@@ -392,8 +392,8 @@ The `train_main.sh` script provides several options for customizing the training
 ---
 
 ## AI Card
-This project is part of our research in Graph Machine Learning. We aim to explore the potential of GNNs in processing 3D data and improving classification accuracy.
 
+Artificial Intelligence (AI) aided the development of this project. Please find our AI-Usage card [here](ai-usage-card.pdf) (generated from [https://ai-cards.org/](https://ai-cards.org/)).
 ---
 
 
