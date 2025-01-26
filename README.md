@@ -166,7 +166,7 @@ The **TransformerConv** layer, as implemented in [PyTorch Geometric](https://pyt
 
 The operation of a **TransformerConv** layer is defined as:
 
-![image](https://github.com/user-attachments/assets/d6588b86-bf44-4a8d-abb0-3cb1efee73df)
+![Pasted_image-removebg-preview](https://github.com/user-attachments/assets/8440b4ae-27ba-4e0b-bfa1-c7b81bc9c74e)
 
 Where:
 
