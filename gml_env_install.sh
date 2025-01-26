@@ -35,4 +35,4 @@ pip install tqdm requests
 
 # Additional package required for DGL implementation
 pip install dgl -f https://data.dgl.ai/wheels/torch-2.4/cu124/repo.html
-pip install h5py kaggle scikit-learn torchmetrics
+pip install h5py kaggle scikit-learn torchmetrics torch-summary tensorboard

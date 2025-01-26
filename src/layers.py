@@ -141,7 +141,4 @@ def convert_idx_to_edge_index(idx):
     # Flatten and combine indices
     edge_index = torch.stack([src_idx.view(-1), tgt_idx.view(-1)], dim=0)
     return edge_index
-<<<<<<< HEAD
-=======
 
->>>>>>> 3e9974fd2c37a29b41e064cc55e5b96f5fb56e21
