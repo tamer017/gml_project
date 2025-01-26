@@ -172,6 +172,9 @@ The operation of a **TransformerConv** layer is defined as:
 
 $$\mathbf{x}^{\prime}_i = \mathbf{W}_1 \mathbf{x}_i + \sum_{j \in \mathcal{N}(i)} \alpha_{i,j} \mathbf{W}_2 \mathbf{x}_{j}$$
 
+$$\mathbf{x}^{\prime}_i = \mathbf{W}_1 \mathbf{x}_i + \sum_{j \in \mathcal{N}(i)} \alpha_{i,j} \mathbf{W}_2 \mathbf{x}_{j}$$
+
+
 Where:
 
 - $$\mathbf{x}^{\prime}_i$$: The updated feature of node $$i$$.
