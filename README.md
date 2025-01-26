@@ -15,7 +15,7 @@
    - [ModelNet40 Dataset](#modelnet40-dataset)
 3. [Methods](#methods)
    - [EdgeConv Layer](#edgeconv-layer)
-   - [Graph Transformer](#graph-transformer)
+   - [TransformerConv](#transformerConv)
    - [Skip Connections](#skip-connections)
    - [Optimizer and Scheduler](#optimizer-and-scheduler)
    - [Data Augmentation](#data-augmentation)
@@ -34,7 +34,7 @@
 ---
 
 ## Introduction
-This project focuses on **3D point cloud classification** using **Graph Neural Networks (GNNs)**. Point clouds, which represent 3D objects as sets of points, are challenging to process due to their irregular and unordered structure. To address this, we use graph-based methods like **EdgeConv** and **Graph Transformers** to capture both local and global relationships between points.
+This project focuses on **3D point cloud classification** using **Graph Neural Networks (GNNs)**. Point clouds, which represent 3D objects as sets of points, are challenging to process due to their irregular and unordered structure. To address this, we use graph-based methods like **EdgeConv** and **TransformerConvs** to capture both local and global relationships between points.
 
 Our approach leverages the **ModelNet40 dataset**, a benchmark for 3D shape recognition, and achieves competitive results. We also explore fine-tuning on the **ShapeNetPart dataset** to evaluate generalization. Implemented with **PyTorch** and **PyTorch Geometric**, the project provides a modular framework for experimenting with GNN architectures and datasets.
 
@@ -157,28 +157,57 @@ EdgeConv and traditional graph convolution (e.g., Graph Convolutional Networks, 
 | **Flexibility**           | Adapts to hierarchical features and varying point densities                | Limited flexibility due to static graph structure                |
 
 ---
-### Graph Transformer
-We replace some **EdgeConv** layers with **Graph Transformers** to capture long-range dependencies in the point cloud. Transformers are effective in modeling global relationships, which complements the local features extracted by EdgeConv.
 
-In the Graph Transformer, the self-attention mechanism is applied to the graph structure. For each node $$x_i$$, the attention weights $$\alpha_{ij}$$ are computed as:
+### TransformerConv
 
-$$\alpha_{ij} = \text{softmax}\left(\frac{(W_Q x_i)^T (W_K x_j)}{\sqrt{d_k}}\right)$$
+The **TransformerConv** layer combines the power of attention mechanisms with graph-based convolutions, making it highly effective for processing irregular data structures like point clouds. Inspired by the **Transformer architecture**, this layer uses **self-attention** to dynamically weigh the importance of neighboring points for feature aggregation.  
 
-where $$W_Q$$ and $$W_K$$ are learnable weight matrices, and $$d_k$$ is the dimension of the key vectors. The output feature for $$x_i$$ is then computed as:
+The operation in a **TransformerConv** layer can be represented as:  
+$$h_i' = \sum_{j \in \mathcal{N}(i)} \alpha_{ij} W h_j$$  
 
-$$x_i' = \sum_{j \in \mathcal{N}(i)} \alpha_{ij} (W_V x_j)$$
+Where:  
+- $$h_i'$$: The updated feature of point $$i$$.  
+- $$\mathcal{N}(i)$$: The set of neighbors for point $$i$$.  
+- $$W$$: A learnable weight matrix.  
+- $$\alpha_{ij}$$: The attention coefficient between points $$i$$ and $$j$$, computed as:  
+$$\alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k \in \mathcal{N}(i)} \exp(e_{ik})}$$  
 
-where $$W_V$$ is another learnable weight matrix.
+Here, $$e_{ij}$$ represents the **attention score**, calculated based on the features of points $$i$$ and $$j$$. Typically, this is implemented as:  
+$$e_{ij} = \text{LeakyReLU}(a^\top [Wh_i || Wh_j])$$  
+Where $$a$$ is a learnable vector, and $$||$$ represents concatenation.  
 
----
+#### **Why TransformerConv is Good for Point Cloud Classification**  
+1. **Dynamic Attention:**  
+   - TransformerConv can dynamically focus on the most relevant neighbors for each point, unlike fixed-weight convolutions. This is crucial for point clouds, where spatial relationships are irregular and unordered.  
+2. **Global Context Awareness:**  
+   - By leveraging self-attention, TransformerConv captures both local and global context, improving the model’s ability to distinguish fine-grained structures and patterns.  
+3. **Robust to Permutations:**  
+   - Point clouds lack an inherent ordering, and TransformerConv handles this property seamlessly due to its permutation-invariant design.  
+
+#### **k-Nearest Neighbors (kNN) Layers**  
+To operate effectively on point clouds, we use **k-Nearest Neighbors (kNN)** to dynamically construct a graph by finding the $$k$$ nearest neighbors of each point based on Euclidean distance. This graph serves as the input for TransformerConv.  
+
+The kNN layer ensures:  
+1. **Local Neighborhoods:**  
+   - Each point aggregates information from its closest neighbors, preserving the local geometry of the point cloud.  
+2. **Efficient Graph Construction:**  
+   - kNN dynamically adapts the graph structure to the underlying data distribution, ensuring that features are propagated effectively.  
+
+#### **Combining TransformerConv and kNN**  
+In our model, the workflow is as follows:  
+1. Use a **kNN layer** to create a dynamic graph of neighbors for each point.  
+2. Apply **TransformerConv** layers to perform feature aggregation with attention-based weighting.  
+3. The combination of kNN and TransformerConv enables our model to effectively learn both local geometric structures and global contextual features, making it highly suitable for **point cloud classification** tasks.  
+
+---  
 
 ### Skip Connections
 
 Skip connections are a critical architectural feature that enhance gradient flow and improve feature aggregation across different layers of deep networks. They address challenges like **vanishing gradients** in very deep models and help preserve fine-grained details while preventing information loss. 
 
-In our architecture, skip connections are added between the input and output of each **EdgeConv** or **Graph Transformer** block. The output of a block with skip connections is computed as:
+In our architecture, skip connections are added between the input and output of each **EdgeConv** or **TransformerConv** block. The output of a block with skip connections is computed as:
 
-$$x_i' = x_i + \text{Block}(x_i)$$
+$$x_i' = x_i + \text{Block}(x_i)$$ 
 
 This form of skip connection, often referred to as a **residual connection**, enables the model to learn residual mappings instead of the complete transformation. This simplifies optimization and helps stabilize training.
 
@@ -196,6 +225,8 @@ To address this, we replaced plain connections (i.e., simple skip connections th
 4. **Enhanced Feature Reuse:** Dense connections promote the sharing of features across multiple layers, further enriching the learned representations.
 
 By incorporating residual and dense connections into our architecture, we were able to overcome the challenges posed by our deep model design and achieve better convergence, stability, and performance.
+![image](https://github.com/user-attachments/assets/e1362728-f367-4fa1-82ae-4af9be4dd039)
+
 
 ---
 
@@ -260,7 +291,7 @@ To improve generalization, we apply data augmentation techniques such as random 
 
 ### Our Results
 - **Model 1**: Repeated EdgeConv + kNN with skip connections. Accuracy: **93.27%**
-- **Model 2**: EdgeConv replaced with Graph Transformers. Accuracy: **92.83%**
+- **Model 2**: EdgeConv replaced with TransformerConvs. Accuracy: **92.83%**
 
 ### Comparison with Other Methods
 We compare our results with both graph-based and non-graph-based methods on the ModelNet40 dataset:
