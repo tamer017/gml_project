@@ -182,20 +182,61 @@ where $$\text{Block}$$ represents either an EdgeConv or Graph Transformer layer.
 ---
 
 ### Optimizer and Scheduler
-We use the **AdamW** optimizer, which is a variant of Adam with decoupled weight decay regularization. The update rule for AdamW is:
 
-$$\theta_{t+1} = \theta_t - \eta \left( \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} + \lambda \theta_t \right)$$
+#### **AdamW Optimizer**
+The **AdamW** optimizer is a widely used optimization algorithm in modern deep learning tasks. It is a variant of the Adam optimizer but incorporates **decoupled weight decay regularization**, which improves training stability and prevents undesirable side effects on weight updates.
 
-where $$\eta$$ is the learning rate, $$\hat{m}_t$$ and $$\hat{v}_t$$ are the bias-corrected first and second moment estimates, $$\epsilon$$ is a small constant for numerical stability, and $$\lambda$$ is the weight decay parameter.
+The update rule for AdamW is:
 
-For the learning rate schedule, we use **cosine annealing**, which reduces the learning rate following a cosine curve over the course of training. The learning rate at step $$t$$ is given by:
+\[
+\theta_{t+1} = \theta_t - \eta \left( \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} + \lambda \theta_t \right)
+\]
 
-$$\eta_t = \eta_{\text{min}} + \frac{1}{2} (\eta_{\text{max}} - \eta_{\text{min}}) \left(1 + \cos\left(\frac{t}{T} \pi\right)\right)$$
+Here are the components:
+- $$\theta_t$$: The parameters of the model at step $$t$$.
+- $$\eta$$: The learning rate, which determines the step size for updates.
+- $$\hat{m}_t$$: The bias-corrected estimate of the first moment (mean of gradients).
+- $$\hat{v}_t$$: The bias-corrected estimate of the second moment (uncentered variance of gradients).
+- $$\epsilon$$: A small constant added for numerical stability, preventing division by zero.
+- $$\lambda$$: The weight decay parameter, which controls the strength of regularization.
 
-where $$\eta_{\text{min}}$$ and $$\eta_{\text{max}}$$ are the minimum and maximum learning rates, and $$T$$ is the total number of training steps.
+**Key Differences Between AdamW and Adam:**
+1. **Weight Decay Regularization:**
+   - In the standard Adam optimizer, weight decay is implemented as **L2 regularization**, which modifies the gradients directly during backpropagation.
+   - In AdamW, weight decay is decoupled from the optimization step. Instead, it is applied as a separate term ($$\lambda \theta_t$$), directly scaling the parameters. This prevents interference with the adaptive moment estimation process, improving convergence and generalization.
+
+2. **Impact on Optimization:**
+   - Decoupling weight decay allows AdamW to handle large-scale models better, particularly in tasks where generalization is critical (e.g., NLP and vision).
+
+
+
+#### **Learning Rate Scheduler: Cosine Annealing**
+Cosine annealing is a learning rate schedule designed to reduce the learning rate gradually, following the shape of a cosine curve. The formula is:
+
+\[
+\eta_t = \eta_{\text{min}} + \frac{1}{2} (\eta_{\text{max}} - \eta_{\text{min}}) \left(1 + \cos\left(\frac{t}{T} \pi\right)\right)
+\]
+
+**Parameters:**
+- $$\eta_{\text{min}}$$: The minimum learning rate.
+- $$\eta_{\text{max}}$$: The initial (maximum) learning rate.
+- $$T$$: The total number of training steps.
+- $$t$$: The current training step.
+
+**Explanation:**
+- At the beginning of training ($$t = 0$$), the learning rate starts at $$\eta_{\text{max}}$$.
+- As $$t$$ increases, the learning rate decreases following a cosine curve, reaching $$\eta_{\text{min}}$$ at the end of training ($$t = T$$).
+- The gradual reduction helps the model converge to a better minimum by taking smaller and smaller steps as training progresses.
+
+**Comparison with Static Learning Rates:**
+1. **Static Learning Rates:**
+   - Static learning rates remain constant throughout training, which can lead to poor convergence. If the learning rate is too high, the optimizer may overshoot the optimal solution; if too low, it may converge too slowly or to a suboptimal point.
+2. **Cosine Annealing:**
+   - Provides a dynamic learning rate that adapts over time, leading to smoother convergence and better performance.
+
+
 
 ---
-
 ### Data Augmentation
 To improve generalization, we apply data augmentation techniques such as random rotation, scaling, and jittering to the point clouds during training. These augmentations help the model become invariant to transformations and improve robustness.
 
@@ -325,6 +366,10 @@ This project is part of our research in Graph Machine Learning. We aim to explor
 4. Qi, C. R., Su, H., Mo, K., & Guibas, L. J. (2017). **PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation**. *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)*, 652-660. [DOI:10.1109/CVPR.2017.16](https://doi.org/10.1109/CVPR.2017.16)
 
 5. Guo, Y., Wang, H., Hu, Q., Liu, H., Liu, L., & Bennamoun, M. (2020). **Deep Learning for 3D Point Clouds: A Survey**. *IEEE Transactions on Pattern Analysis and Machine Intelligence*, 43(12), 4338-4364. [DOI:10.1109/TPAMI.2020.3005434](https://doi.org/10.1109/TPAMI.2020.3005434)
+
+6. Loshchilov, Ilya, and Hutter, Frank. *"SGDR: Stochastic Gradient Descent with Warm Restarts."* arXiv preprint arXiv:1608.03983 (2016). [Link](https://arxiv.org/abs/1608.03983)
+
+7. Loshchilov, Ilya, and Hutter, Frank. *"Decoupled Weight Decay Regularization."* arXiv preprint arXiv:1711.05101 (2017). [Link](https://arxiv.org/abs/1711.05101)
 
 
 
