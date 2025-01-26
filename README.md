@@ -168,7 +168,7 @@ EdgeConv and traditional graph convolution (e.g., Graph Convolutional Networks, 
   - The graph structure is **static** and does not change during processing.
   - You do not need to explicitly model edge features.
 
-
+---
 ### Graph Transformer
 We replace some **EdgeConv** layers with **Graph Transformers** to capture long-range dependencies in the point cloud. Transformers are effective in modeling global relationships, which complements the local features extracted by EdgeConv.
 
