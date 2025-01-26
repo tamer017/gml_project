@@ -48,9 +48,8 @@ def load_pretrained_models(model, pretrained_model, phase, ismax=True):  # ismax
             model_dict = model.state_dict()
             ckpt_model_state_dict = checkpoint['state_dict']
 
-            # # Remove the last layer's weights and biases from the state dictionary
-            # del ckpt_model_state_dict['module.prediction.2.0.weight']
-            # del ckpt_model_state_dict['module.prediction.2.0.bias']
+
+
 
             # rename ckpt (avoid name is not same because of multi-gpus)
             is_model_multi_gpus = True if list(model_dict)[0][0][0] == 'm' else False
@@ -85,7 +84,6 @@ def load_pretrained_models(model, pretrained_model, phase, ismax=True):  # ismax
     else:
         logging.info('===> No pre-trained model')
     return model, best_value, epoch
-
 
 
 def load_pretrained_optimizer(pretrained_model, optimizer, scheduler, lr, use_ckpt_lr=True):

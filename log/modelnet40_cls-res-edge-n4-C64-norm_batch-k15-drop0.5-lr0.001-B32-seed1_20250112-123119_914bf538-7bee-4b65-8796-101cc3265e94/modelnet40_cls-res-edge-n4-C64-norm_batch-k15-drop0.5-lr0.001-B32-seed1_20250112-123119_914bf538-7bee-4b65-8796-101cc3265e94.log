@@ -1,0 +1,156 @@
+2025-01-12 12:31:19,532 saving log, checkpoint and back up code in folder: log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-123119_914bf538-7bee-4b65-8796-101cc3265e94
+2025-01-12 12:31:19,532 ==========       args      =============
+2025-01-12 12:31:19,532 phase:train
+2025-01-12 12:31:19,532 exp_name:modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1
+2025-01-12 12:31:19,533 job_name:modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-123119_914bf538-7bee-4b65-8796-101cc3265e94
+2025-01-12 12:31:19,533 use_cpu:False
+2025-01-12 12:31:19,533 root_dir:log
+2025-01-12 12:31:19,533 data_dir:/user/ahmed.assy/u12745/Dataset
+2025-01-12 12:31:19,533 dataset:ModelNet40
+2025-01-12 12:31:19,533 num_points:2048
+2025-01-12 12:31:19,533  :True
+2025-01-12 12:31:19,533 in_channels:3
+2025-01-12 12:31:19,533 batch_size:32
+2025-01-12 12:31:19,533 epochs:400
+2025-01-12 12:31:19,533 use_sgd:False
+2025-01-12 12:31:19,533 weight_decay:0.0001
+2025-01-12 12:31:19,533 lr:0.001
+2025-01-12 12:31:19,533 seed:1
+2025-01-12 12:31:19,533 multi_gpus:False
+2025-01-12 12:31:19,533 test_batch_size:50
+2025-01-12 12:31:19,533 pretrained_model:
+2025-01-12 12:31:19,533 k:15
+2025-01-12 12:31:19,533 block:res
+2025-01-12 12:31:19,533 conv:edge
+2025-01-12 12:31:19,533 act:relu
+2025-01-12 12:31:19,533 norm:batch
+2025-01-12 12:31:19,533 bias:True
+2025-01-12 12:31:19,533 n_blocks:4
+2025-01-12 12:31:19,533 n_filters:64
+2025-01-12 12:31:19,533 emb_dims:1024
+2025-01-12 12:31:19,533 dropout:0.5
+2025-01-12 12:31:19,533 dynamic:False
+2025-01-12 12:31:19,533 fine_tune:False
+2025-01-12 12:31:19,533 fine_tune_num_classes:16
+2025-01-12 12:31:19,533 use_dilation:True
+2025-01-12 12:31:19,534 epsilon:0.2
+2025-01-12 12:31:19,534 use_stochastic:True
+2025-01-12 12:31:19,534 device:cuda
+2025-01-12 12:31:19,534 exp_dir:log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-123119_914bf538-7bee-4b65-8796-101cc3265e94
+2025-01-12 12:31:19,534 ckpt_dir:log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-123119_914bf538-7bee-4b65-8796-101cc3265e94/checkpoint
+2025-01-12 12:31:19,534 code_dir:log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-123119_914bf538-7bee-4b65-8796-101cc3265e94/code
+2025-01-12 12:31:19,534 writer:<torch.utils.tensorboard.writer.SummaryWriter object at 0x7ff37e8f0190>
+2025-01-12 12:31:19,534 epoch:-1
+2025-01-12 12:31:19,534 step:-1
+2025-01-12 12:31:19,534 loglevel:info
+2025-01-12 12:31:19,534 ==========     args END    =============
+2025-01-12 12:31:19,534 
+
+2025-01-12 12:31:19,534 ===> Phase is train.
+2025-01-12 12:31:19,537 ===> Creating data-loader ...
+2025-01-12 12:31:23,683 ===> Loading ModelNet40 from /user/ahmed.assy/u12745/Dataset. number of classes equal to 40
+2025-01-12 12:31:23,684 ===> Loading the network ...
+2025-01-12 12:31:23,992 DeepGCN(
+  (knn): DenseDilatedKnnGraph(
+    (_dilated): DenseDilated()
+  )
+  (head): GraphConv2d(
+    (gconv): EdgeConvLayer(
+      (edge_conv): EdgeConv(nn=BasicLayer(
+        (0): Linear(in_features=6, out_features=64, bias=False)
+        (1): ReLU()
+        (2): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (3): Linear(in_features=64, out_features=64, bias=False)
+        (4): ReLU()
+        (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      ))
+    )
+  )
+  (backbone): Sequential(
+    (0): ResDynBlock2d(
+      (body): DynConv2d(
+        (gconv): EdgeConvLayer(
+          (edge_conv): EdgeConv(nn=BasicLayer(
+            (0): Linear(in_features=128, out_features=64, bias=True)
+            (1): ReLU()
+            (2): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (3): Linear(in_features=64, out_features=64, bias=True)
+            (4): ReLU()
+            (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          ))
+        )
+        (dilated_knn_graph): DenseDilatedKnnGraph(
+          (_dilated): DenseDilated()
+        )
+      )
+    )
+    (1): ResDynBlock2d(
+      (body): DynConv2d(
+        (gconv): EdgeConvLayer(
+          (edge_conv): EdgeConv(nn=BasicLayer(
+            (0): Linear(in_features=128, out_features=64, bias=True)
+            (1): ReLU()
+            (2): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (3): Linear(in_features=64, out_features=64, bias=True)
+            (4): ReLU()
+            (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          ))
+        )
+        (dilated_knn_graph): DenseDilatedKnnGraph(
+          (_dilated): DenseDilated()
+        )
+      )
+    )
+    (2): ResDynBlock2d(
+      (body): DynConv2d(
+        (gconv): EdgeConvLayer(
+          (edge_conv): EdgeConv(nn=BasicLayer(
+            (0): Linear(in_features=128, out_features=64, bias=True)
+            (1): ReLU()
+            (2): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (3): Linear(in_features=64, out_features=64, bias=True)
+            (4): ReLU()
+            (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          ))
+        )
+        (dilated_knn_graph): DenseDilatedKnnGraph(
+          (_dilated): DenseDilated()
+        )
+      )
+    )
+  )
+  (fusion_block): BasicConv(
+    (0): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): LeakyReLU(negative_slope=0.2)
+    (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (prediction): Sequential(
+    (0): BasicConv(
+      (0): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1))
+      (1): LeakyReLU(negative_slope=0.2)
+      (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (3): Dropout2d(p=0.5, inplace=False)
+    )
+    (1): BasicConv(
+      (0): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1))
+      (1): LeakyReLU(negative_slope=0.2)
+      (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (3): Dropout2d(p=0.5, inplace=False)
+    )
+    (2): BasicConv(
+      (0): Conv2d(256, 40, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+)
+2025-01-12 12:31:23,993 ===> loading pre-trained ...
+2025-01-12 12:31:23,993 ===> No pre-trained model
+2025-01-12 12:31:23,993 ===> Init the optimizer ...
+2025-01-12 12:31:23,993 ===> Use AdamW
+2025-01-12 12:31:23,994 ===> Init Metric ...
+2025-01-12 12:31:23,998 ===> start training ...
+2025-01-12 12:32:50,409 Got a new best model on Test with Overall ACC 0.6268. Its avg acc is 0.5106
+2025-01-12 12:32:50,607 save a new best model into log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-123119_914bf538-7bee-4b65-8796-101cc3265e94/checkpoint/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1-best_model.pth
+2025-01-12 12:32:50,608 ===> Epoch 0/400, Train Loss 3.2239, Test Overall Acc 0.6268, Test Avg Acc 0.510581, Best Test Overall Acc 0.6268, Its test avg acc 0.5106.
+2025-01-12 12:34:16,524 Got a new best model on Test with Overall ACC 0.7265. Its avg acc is 0.6114
+2025-01-12 12:34:16,719 save a new best model into log/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1_20250112-123119_914bf538-7bee-4b65-8796-101cc3265e94/checkpoint/modelnet40_cls-res-edge-n4-C64-norm_batch-k15-drop0.5-lr0.001-B32-seed1-best_model.pth
+2025-01-12 12:34:16,719 ===> Epoch 1/400, Train Loss 2.5226, Test Overall Acc 0.7265, Test Avg Acc 0.611372, Best Test Overall Acc 0.7265, Its test avg acc 0.6114.

@@ -89,9 +89,6 @@ class EdgeConvLayer(nn.Module):
             aggr=aggr
         )
 
-        # Normalization
-        self.norm = norm_layer(norm, out_channels) if norm else None
-
     def forward(self, x, edge_index):
         """
         Forward pass for EdgeConvLayer.
@@ -112,9 +109,6 @@ class EdgeConvLayer(nn.Module):
         # Apply EdgeConv
         out = self.edge_conv(x, edge_index)  # [B*N, out_channels]
 
-        # # Apply normalization
-        if self.norm:
-            out = self.norm(out)
 
         # Reshape back to original format
         out_channels = out.shape[-1]
@@ -170,6 +164,7 @@ class GraphTransformerLayer(nn.Module):
         out = self.activation(out)
 
         # Reshape back to [B, out_channels, N, 1]
+
         out_channels = out.shape[1]
         out = out.view(B, N, out_channels).permute(0, 2, 1).unsqueeze(-1)
         return out
@@ -178,7 +173,8 @@ class GraphConv2d(nn.Module):
     """
     Static graph convolution layer
     """
-    def __init__(self, in_channels, out_channels, conv='gcn', act='relu', norm=None, bias=True):
+
+    def __init__(self, in_channels, out_channels, conv='edge', act='relu', norm=None, bias=True):
         super(GraphConv2d, self).__init__()
         if conv == 'edge':
             self.gconv = EdgeConvLayer(in_channels, out_channels, act, norm, bias)
@@ -257,6 +253,7 @@ class DenseDynBlock2d(nn.Module):
                               act, norm, bias, stochastic, epsilon, knn)
 
         elif dynamic == True:
+
             self.body = DynamicEdgeConvLayer(in_channels, in_channels, kernel_size, act, norm, bias)
         else:
             self.body = DynConv2d(in_channels, out_channels, kernel_size, dilation, conv,

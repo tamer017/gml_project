@@ -48,7 +48,6 @@ def train(model, train_loader, test_loader, opt):
 
         scheduler.step()
 
-        # ------------------  save ckpt
         if test_overall_acc > best_test_overall_acc:
             best_test_overall_acc = test_overall_acc
             avg_acc_when_best = test_class_acc
@@ -56,7 +55,6 @@ def train(model, train_loader, test_loader, opt):
                          "Its avg acc is {:.4f}".format(best_test_overall_acc, avg_acc_when_best))
             save_ckpt(model, optimizer, scheduler, opt, 'best')
 
-        # ------------------ show information
         logging.info(
             "===> Epoch {}/{}, Train Loss {:.4f}, Test Overall Acc {:.4f}, Test Avg Acc {:4f}, "
             "Best Test Overall Acc {:.4f}, Its test avg acc {:.4f}.".format(
@@ -152,15 +150,6 @@ def save_ckpt(model, optimizer, scheduler, opt, name_post):
     logging.info('save a new best model into {}'.format(filename))
 
 
-def print_model_parameters(model):
-    print("Model Parameters:")
-    for name, param in model.named_parameters():
-        print(f"Name: {name}")
-        print(f"Shape: {param.shape}")
-        print(f"Requires Grad: {param.requires_grad}")
-        print(f"Device: {param.device}")
-        print("-" * 50)
-
 if __name__ == '__main__':
     warnings.filterwarnings("ignore")
     opt = OptInit().get_args()
@@ -188,38 +177,26 @@ if __name__ == '__main__':
 
     logging.info('===> Loading the network ...')
 
-    print(train_loader.dataset.num_classes())
-    # opt.n_classes = 40
 
 
     model = DeepGCN(opt)
     logging.info(summary(model))
+
 
     if opt.multi_gpus:
         model = nn.DataParallel(model)
     model = model.to(opt.device)
     logging.info(model)
 
-    print_model_parameters(model)
-    
-
-    print("first model"*50)
 
     logging.info('===> loading pre-trained ...')
-    
     model, opt.best_value, opt.epoch = load_pretrained_models(model, opt.pretrained_model, opt.phase)
-
-
     
     if opt.fine_tune == True:
         opt.n_classes = train_loader.dataset.num_classes()
-
-        # model = add_new_layer(model, opt.n_classes)
         model.module.update_num_classes(opt.n_classes)
-    print(model)
-    print_model_parameters(model)
-    print("Second model"*50)
-
+        print('number of classes changed to {}'.format(opt.n_classes))
+        
 
     if opt.phase == 'train':
         train(model, train_loader, test_loader, opt)

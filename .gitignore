@@ -28,4 +28,5 @@ Dataset/
 
 # Ignore common dataset/model files
 *.h5
+
 *.pth

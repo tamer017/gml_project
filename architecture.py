@@ -116,4 +116,3 @@ class DeepGCN(torch.nn.Module):
             raise ValueError(f"Unsupported layer type: {type(last_layer)}")
 
 
-
