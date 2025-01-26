@@ -158,48 +158,73 @@ EdgeConv and traditional graph convolution (e.g., Graph Convolutional Networks, 
 
 ---
 
-### TransformerConv
+Here's the revised section for your README, incorporating information from the provided link and adding relevant references:
 
-The **TransformerConv** layer combines the power of attention mechanisms with graph-based convolutions, making it highly effective for processing irregular data structures like point clouds. Inspired by the **Transformer architecture**, this layer uses **self-attention** to dynamically weigh the importance of neighboring points for feature aggregation.  
+---
 
-The operation in a **TransformerConv** layer can be represented as:  
+### TransformerConv and kNN Layers
 
-$$h_i' = \sum_{j \in \mathcal{N}(i)} \alpha_{ij} W h_j$$  
+#### **TransformerConv**
 
-Where:  
-- $$h_i'$$: The updated feature of point $$i$$.  
-- $$\mathcal{N}(i)$$: The set of neighbors for point $$i$$.  
-- $$W$$: A learnable weight matrix.  
-- $$\alpha_{ij}$$: The attention coefficient between points $$i$$ and $$j$$, computed as:
-- 
-$$\alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k \in \mathcal{N}(i)} \exp(e_{ik})}$$  
+The **TransformerConv** layer, as implemented in [PyTorch Geometric](https://pytorch-geometric.readthedocs.io/en/2.4.0/generated/torch_geometric.nn.conv.TransformerConv.html), integrates the attention mechanisms of Transformers with graph convolutional networks, making it particularly effective for processing non-Euclidean data structures like point clouds.
 
-Here, $$e_{ij}$$ represents the **attention score**, calculated based on the features of points $$i$$ and $$j$$. Typically, this is implemented as:  
-$$e_{ij} = \text{LeakyReLU}(a^\top [Wh_i || Wh_j])$$  
-Where $$a$$ is a learnable vector, and $$||$$ represents concatenation.  
+The operation of a **TransformerConv** layer is defined as:
 
-#### **Why TransformerConv is Good for Point Cloud Classification**  
-1. **Dynamic Attention:**  
-   - TransformerConv can dynamically focus on the most relevant neighbors for each point, unlike fixed-weight convolutions. This is crucial for point clouds, where spatial relationships are irregular and unordered.  
-2. **Global Context Awareness:**  
-   - By leveraging self-attention, TransformerConv captures both local and global context, improving the model’s ability to distinguish fine-grained structures and patterns.  
-3. **Robust to Permutations:**  
-   - Point clouds lack an inherent ordering, and TransformerConv handles this property seamlessly due to its permutation-invariant design.  
+$$\mathbf{x}^{\prime}_i = \mathbf{W}_1 \mathbf{x}_i + \sum_{j \in \mathcal{N}(i)} \alpha_{i,j} \mathbf{W}_2 \mathbf{x}_{j}$$
 
-#### **k-Nearest Neighbors (kNN) Layers**  
-To operate effectively on point clouds, we use **k-Nearest Neighbors (kNN)** to dynamically construct a graph by finding the $$k$$ nearest neighbors of each point based on Euclidean distance. This graph serves as the input for TransformerConv.  
+Where:
 
-The kNN layer ensures:  
-1. **Local Neighborhoods:**  
-   - Each point aggregates information from its closest neighbors, preserving the local geometry of the point cloud.  
-2. **Efficient Graph Construction:**  
-   - kNN dynamically adapts the graph structure to the underlying data distribution, ensuring that features are propagated effectively.  
+- \(\mathbf{x}^{\prime}_i\): The updated feature of node \(i\).
+- \(\mathcal{N}(i)\): The set of neighbors for node \(i\).
+- \(\mathbf{W}_1\) and \(\mathbf{W}_2\): Learnable weight matrices.
+- \(\alpha_{i,j}\): The attention coefficient between nodes \(i\) and \(j\), computed as:
 
-#### **Combining TransformerConv and kNN**  
-In our model, the workflow is as follows:  
-1. Use a **kNN layer** to create a dynamic graph of neighbors for each point.  
-2. Apply **TransformerConv** layers to perform feature aggregation with attention-based weighting.  
-3. The combination of kNN and TransformerConv enables our model to effectively learn both local geometric structures and global contextual features, making it highly suitable for **point cloud classification** tasks.  
+$$\alpha_{i,j} = \text{softmax} \left( \frac{(\mathbf{W}_3\mathbf{x}_i)^{\top} (\mathbf{W}_4\mathbf{x}_j)} {\sqrt{d}} \right)$$
+
+Here, \(d\) represents the dimensionality of the key vectors, and \(\mathbf{W}_3\) and \(\mathbf{W}_4\) are additional learnable weight matrices.
+
+**Key Features:**
+
+- **Multi-Head Attention:** The layer supports multiple attention heads, allowing the model to capture various aspects of the local neighborhood.
+- **Edge Features:** If edge features are present, the layer can incorporate them into the attention mechanism, enhancing its ability to model complex relationships.
+
+
+#### **Why TransformerConv is Beneficial for Point Cloud Classification**
+
+1. **Dynamic Attention:**
+   - TransformerConv dynamically assigns weights to neighboring points, enabling the model to focus on the most relevant features within a point cloud's local structure.
+
+2. **Global Context Integration:**
+   - By leveraging self-attention, the layer captures both local and global contextual information, which is crucial for understanding complex 3D structures.
+
+3. **Permutation Invariance:**
+   - Point clouds are unordered sets of points. TransformerConv's design inherently handles this property, ensuring consistent performance regardless of point ordering.
+
+#### **k-Nearest Neighbors (kNN) Layers**
+
+In point cloud processing, constructing a meaningful graph structure is essential. We employ **k-Nearest Neighbors (kNN)** to build this graph by connecting each point to its \(k\) closest neighbors based on Euclidean distance.
+
+**Benefits of kNN in This Context:**
+
+- **Preservation of Local Geometry:**
+  - By connecting each point to its nearest neighbors, the local geometric relationships are maintained, which is vital for accurate feature learning.
+
+- **Dynamic Graph Construction:**
+  - The kNN approach allows the graph structure to adapt dynamically to the underlying data distribution, ensuring that the most relevant connections are established for each point.
+
+
+#### **Integrating TransformerConv with kNN for Point Cloud Classification**
+
+Our model follows these steps:
+
+1. **Graph Construction:**
+   - Utilize a kNN layer to construct a graph where each point is connected to its \(k\) nearest neighbors.
+
+2. **Feature Aggregation:**
+   - Apply TransformerConv layers to aggregate features from neighboring points, with attention mechanisms assigning appropriate weights to each neighbor's contribution.
+
+3. **Hierarchical Learning:**
+   - Stack multiple TransformerConv layers to learn hierarchical representations, capturing both fine-grained local details and broader global structures.
 
 ---  
 
@@ -417,6 +442,10 @@ Artificial Intelligence (AI) aided the development of this project. Please find 
 6. Loshchilov, Ilya, and Hutter, Frank. *"SGDR: Stochastic Gradient Descent with Warm Restarts."* arXiv preprint arXiv:1608.03983 (2016). [Link](https://arxiv.org/abs/1608.03983)
 
 7. Loshchilov, Ilya, and Hutter, Frank. *"Decoupled Weight Decay Regularization."* arXiv preprint arXiv:1711.05101 (2017). [Link](https://arxiv.org/abs/1711.05101)
+
+8. Shi, Yunsheng, et al. "Masked Label Prediction: Unified Message Passing Model for Semi-Supervised Classification." arXiv preprint arXiv:2009.03509 (2020). [Link](https://arxiv.org/abs/2009.03509)
+
+9. Zhao, Hengshuang, et al. "Point Transformer." Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV), 2021. [Link](https://arxiv.org/abs/2012.09164)
 
 
 
