@@ -22,14 +22,17 @@
 4. [Results](#results)
    - [Our Results](#our-results)
    - [Comparison with Other Methods](#comparison-with-other-methods)
-5. [Fine-Tuning on ShapeNetPart](#fine-tuning-on-shapenetpart)
-6. [How to Run](#how-to-run)
+5. [Experiments](#experiments)
+   - [Experiment 1](#experiments-1)
+   - [Experiment 2](#experiments-2)
+6. [Fine-Tuning on ShapeNetPart](#fine-tuning-on-shapenetpart)
+7. [How to Run](#how-to-run)
    - [Setup](#setup)
    - [Training and Testing](#training-and-testing)
    - [Options in `train_main.sh`](#options-in-train_mainsh)
-7. [AI Card](#ai-card)
-8. [References](#references)
-9. [Contact](#contact)
+8. [AI Card](#ai-card)
+9. [References](#references)
+10. [Contact](#contact)
 
 ---
 
@@ -327,6 +330,10 @@ Data augmentation is a crucial technique in machine learning, especially when wo
    - **Effect**: Normalization ensures that all point clouds have a consistent scale and position, which can improve the convergence and stability of the training process.
 
 
+---
+## Experiments
+### Experiment 1
+### Experiment 2
 ---
 
 ## Results
