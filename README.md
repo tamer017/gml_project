@@ -188,9 +188,7 @@ The **AdamW** optimizer is a widely used optimization algorithm in modern deep l
 
 The update rule for AdamW is:
 
-\[
-\theta_{t+1} = \theta_t - \eta \left( \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} + \lambda \theta_t \right)
-\]
+$$\theta_{t+1} = \theta_t - \eta \left( \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} + \lambda \theta_t \right)$$
 
 Here are the components:
 - $$\theta_t$$: The parameters of the model at step $$t$$.
@@ -213,9 +211,7 @@ Here are the components:
 #### **Learning Rate Scheduler: Cosine Annealing**
 Cosine annealing is a learning rate schedule designed to reduce the learning rate gradually, following the shape of a cosine curve. The formula is:
 
-\[
-\eta_t = \eta_{\text{min}} + \frac{1}{2} (\eta_{\text{max}} - \eta_{\text{min}}) \left(1 + \cos\left(\frac{t}{T} \pi\right)\right)
-\]
+$$\eta_t = \eta_{\text{min}} + \frac{1}{2} (\eta_{\text{max}} - \eta_{\text{min}}) \left(1 + \cos\left(\frac{t}{T} \pi\right)\right)$$
 
 **Parameters:**
 - $$\eta_{\text{min}}$$: The minimum learning rate.
