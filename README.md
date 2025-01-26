@@ -1,7 +1,9 @@
-
 # 3D Point Cloud Classification Using Graph Neural Networks
 
-This project focuses on classifying dense 3D point clouds using Graph Neural Networks (GNNs). We leverage the **ModelNet40** dataset, which contains 12,311 CAD models across 40 object categories, to benchmark our models. The project explores graph-based approaches, including **EdgeConv** layers and **Graph Transformers**, and compares them with traditional methods like **PointNet**.
+[![Python 3.8](https://img.shields.io/badge/Python-3.8-blue.svg)](https://www.python.org/downloads/release/python-380/)
+[![PyTorch 2.4](https://img.shields.io/badge/PyTorch-2.4-orange.svg)](https://pytorch.org/)
+[![Final](https://img.shields.io/badge/Status-Final-purple.svg)](https://img.shields.io/badge/Status-Final-blue.svg)
+[![AI-Usage Card](https://img.shields.io/badge/AI_Usage_Card-pdf-blue.svg)](ai-usage-card.pdf)
 
 ---
 
@@ -48,7 +50,6 @@ The **ModelNet40** dataset is a widely used benchmark for 3D object classificati
 ---
 
 ## Methods
-
 
 ### EdgeConv Layer
 The **EdgeConv** layer is a graph convolution operation that captures local geometric structures by constructing a k-Nearest Neighbors (kNN) graph. It dynamically updates edge features based on the relationships between neighboring points.
@@ -112,6 +113,7 @@ where \( \eta_{\text{min}} \) and \( \eta_{\text{max}} \) are the minimum and ma
 
 ### Data Augmentation
 To improve generalization, we apply data augmentation techniques such as random rotation, scaling, and jittering to the point clouds during training. These augmentations help the model become invariant to transformations and improve robustness.
+
 
 ---
 
