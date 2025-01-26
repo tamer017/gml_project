@@ -25,3 +25,16 @@ logs/
 # Ignore specific dataset-related directories
 .DS_Store
 .Datasets/
+
+# Ignore all .h5 files (common for datasets)
+*.h5
+
+# Ignore all .pth files (model checkpoints)
+*.pth
+
+# Ignore Dataset directory
+Dataset/
+
+# You can also ignore other large files like logs or checkpoints
+*checkpoints*
+*logs*
