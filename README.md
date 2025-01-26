@@ -49,20 +49,69 @@ The **ModelNet40** dataset is a widely used benchmark for 3D object classificati
 
 ## Methods
 
+
 ### EdgeConv Layer
 The **EdgeConv** layer is a graph convolution operation that captures local geometric structures by constructing a k-Nearest Neighbors (kNN) graph. It dynamically updates edge features based on the relationships between neighboring points.
+
+Given a point cloud \( X = \{x_1, x_2, ..., x_n\} \), where \( x_i \in \mathbb{R}^d \), EdgeConv constructs a graph by connecting each point \( x_i \) to its \( k \) nearest neighbors. The feature of an edge \( (x_i, x_j) \) is computed as:
+
+\[
+h_{ij} = h_\Theta(x_i, x_j - x_i)
+\]
+
+where \( h_\Theta \) is a learnable function (e.g., a multi-layer perceptron), and \( x_j - x_i \) represents the relative position of the neighbor \( x_j \) with respect to \( x_i \). The output feature for \( x_i \) is then aggregated as:
+
+\[
+x_i' = \max_{j \in \mathcal{N}(i)} h_{ij}
+\]
+
+where \( \mathcal{N}(i) \) is the set of neighbors of \( x_i \), and \( \max \) is a symmetric aggregation function (e.g., max-pooling).
 
 ### Graph Transformer
 We replace some **EdgeConv** layers with **Graph Transformers** to capture long-range dependencies in the point cloud. Transformers are effective in modeling global relationships, which complements the local features extracted by EdgeConv.
 
+In the Graph Transformer, the self-attention mechanism is applied to the graph structure. For each node \( x_i \), the attention weights \( \alpha_{ij} \) are computed as:
+
+\[
+\alpha_{ij} = \text{softmax}\left(\frac{(W_Q x_i)^T (W_K x_j)}{\sqrt{d_k}}\right)
+\]
+
+where \( W_Q \) and \( W_K \) are learnable weight matrices, and \( d_k \) is the dimension of the key vectors. The output feature for \( x_i \) is then computed as:
+
+\[
+x_i' = \sum_{j \in \mathcal{N}(i)} \alpha_{ij} (W_V x_j)
+\]
+
+where \( W_V \) is another learnable weight matrix.
+
 ### Skip Connections
-Skip connections are used to improve gradient flow and feature aggregation across different layers. They help in preserving fine-grained details and preventing information loss.
+Skip connections are used to improve gradient flow and feature aggregation across different layers. They help in preserving fine-grained details and preventing information loss. In our architecture, skip connections are added between the input and output of each **EdgeConv** or **Graph Transformer** block. The output of a block with skip connections is computed as:
+
+\[
+x_i' = x_i + \text{Block}(x_i)
+\]
+
+where \( \text{Block} \) represents either an EdgeConv or Graph Transformer layer.
 
 ### Optimizer and Scheduler
-We use the **AdamW** optimizer with a **cosine annealing learning rate scheduler** to stabilize training and improve convergence.
+We use the **AdamW** optimizer, which is a variant of Adam with decoupled weight decay regularization. The update rule for AdamW is:
+
+\[
+\theta_{t+1} = \theta_t - \eta \left( \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} + \lambda \theta_t \right)
+\]
+
+where \( \eta \) is the learning rate, \( \hat{m}_t \) and \( \hat{v}_t \) are the bias-corrected first and second moment estimates, \( \epsilon \) is a small constant for numerical stability, and \( \lambda \) is the weight decay parameter.
+
+For the learning rate schedule, we use **cosine annealing**, which reduces the learning rate following a cosine curve over the course of training. The learning rate at step \( t \) is given by:
+
+\[
+\eta_t = \eta_{\text{min}} + \frac{1}{2} (\eta_{\text{max}} - \eta_{\text{min}}) \left(1 + \cos\left(\frac{t}{T} \pi\right)\right)
+\]
+
+where \( \eta_{\text{min}} \) and \( \eta_{\text{max}} \) are the minimum and maximum learning rates, and \( T \) is the total number of training steps.
 
 ### Data Augmentation
-To improve generalization, we apply data augmentation techniques such as random rotation, scaling, and jittering to the point clouds during training.
+To improve generalization, we apply data augmentation techniques such as random rotation, scaling, and jittering to the point clouds during training. These augmentations help the model become invariant to transformations and improve robustness.
 
 ---
 
