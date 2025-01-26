@@ -23,8 +23,6 @@
    - [Our Results](#our-results)
    - [Comparison with Other Methods](#comparison-with-other-methods)
 5. [Experiments](#experiments)
-   - [Experiment 1](#experiment-1)
-   - [Experiment 2](#experiment-2)
 6. [Fine-Tuning on ShapeNetPart](#fine-tuning-on-shapenetpart)
 7. [How to Run](#how-to-run)
    - [Setup](#setup)
@@ -332,7 +330,10 @@ Data augmentation is a crucial technique in machine learning, especially when wo
 
 ---
 ## Experiments
-### Experiment 1
+<details>
+
+<summary>Experiment 1</summary>
+
 #### **Training on ModelNet40 with EdgeConv and Skip Connections**
 Evaluate the performance of a **Graph Neural Network (GNN)** using **EdgeConv** layers with **skip connections** on the **ModelNet40** dataset.
 
@@ -389,9 +390,11 @@ The model consists of **EdgeConv blocks**, a **fusion layer**, and a **predictio
 - **Activation Function**: ReLU (EdgeConv), LeakyReLU (fusion and prediction head).
 - **Data Augmentation**: Translation, shuffling, and normalization.
 
----
+</details>
+<details>
 
-### Experiment 2
+<summary>Experiment 2</summary>
+
 #### **Training on ModelNet40 with TransformerConv and Dense Connections**
 Evaluate the performance of a **Graph Neural Network (GNN)** using **TransformerConv** layers with **dense connections** on the **ModelNet40** dataset.
 
@@ -448,7 +451,7 @@ The model consists of **TransformerConv blocks**, a **fusion layer**, and a **pr
 - **Activation Function**: ReLU (TransformerConv), LeakyReLU (fusion and prediction head).
 - **Data Augmentation**: Translation, scaling, shuffling, and normalization.
 
----
+</details>
 
 ## Results
 
