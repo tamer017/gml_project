@@ -156,18 +156,6 @@ EdgeConv and traditional graph convolution (e.g., Graph Convolutional Networks, 
 | **Suitability for Point Clouds** | Highly suitable, captures local geometry effectively                  | Less suitable, struggles with irregular and unordered data       |
 | **Flexibility**           | Adapts to hierarchical features and varying point densities                | Limited flexibility due to static graph structure                |
 
-
-#### When to Use EdgeConv vs. Traditional GCN
-- Use **EdgeConv** when:
-  - You are working with **point clouds** or other data where local geometric relationships are important.
-  - The graph structure is **irregular** or **dynamic** (e.g., kNN graphs).
-  - You need to explicitly model **edge features** or relative relationships between nodes.
-
-- Use **Traditional GCN** when:
-  - You are working with **predefined graphs** (e.g., social networks, molecular structures).
-  - The graph structure is **static** and does not change during processing.
-  - You do not need to explicitly model edge features.
-
 ---
 ### Graph Transformer
 We replace some **EdgeConv** layers with **Graph Transformers** to capture long-range dependencies in the point cloud. Transformers are effective in modeling global relationships, which complements the local features extracted by EdgeConv.
