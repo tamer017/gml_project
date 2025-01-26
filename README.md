@@ -244,9 +244,13 @@ This project is part of our research in Graph Machine Learning. We aim to explor
 ---
 
 ## References
-1. Princeton University, ModelNet40 Dataset. [Link](https://modelnet.cs.princeton.edu/)
-2. Qi et al., PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation. [Link](https://arxiv.org/abs/1612.00593)
-3. Wang et al., Dynamic Graph CNN for Learning on Point Clouds. [Link](https://arxiv.org/abs/1801.07829)
+1.@inproceedings{wu20153d,
+  title={3D ShapeNets: A Deep Representation for Volumetric Shapes},
+  author={Wu, Zhirong and Song, Shuran and Khosla, Aditya and Yu, Fisher and Zhang, Linguang and Tang, Xiaoou and Xiao, Jianxiong},
+  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2015}
+}
+2. Princeton University, ModelNet40 Dataset. [Link](https://modelnet.cs.princeton.edu/)
 
 ---
 
