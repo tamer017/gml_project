@@ -173,11 +173,29 @@ where $$W_V$$ is another learnable weight matrix.
 ---
 
 ### Skip Connections
-Skip connections are used to improve gradient flow and feature aggregation across different layers. They help in preserving fine-grained details and preventing information loss. In our architecture, skip connections are added between the input and output of each **EdgeConv** or **Graph Transformer** block. The output of a block with skip connections is computed as:
+
+Skip connections are a critical architectural feature that enhance gradient flow and improve feature aggregation across different layers of deep networks. They address challenges like **vanishing gradients** in very deep models and help preserve fine-grained details while preventing information loss. 
+
+In our architecture, skip connections are added between the input and output of each **EdgeConv** or **Graph Transformer** block. The output of a block with skip connections is computed as:
 
 $$x_i' = x_i + \text{Block}(x_i)$$
 
-where $$\text{Block}$$ represents either an EdgeConv or Graph Transformer layer.
+This form of skip connection, often referred to as a **residual connection**, enables the model to learn residual mappings instead of the complete transformation. This simplifies optimization and helps stabilize training.
+
+#### **Why Residual Connections in Our Model?**
+Our model architecture is notably deep, with a large number of stacked layers. While depth enables the network to learn more complex features, it also introduces the risk of the **vanishing gradient problem**, where gradients diminish as they are backpropagated through the network. This can lead to poor training dynamics and suboptimal performance. 
+
+To address this, we replaced plain connections (i.e., simple skip connections that directly add inputs to outputs without transformation) with **residual and dense connections**, which are more effective for deep architectures:
+- **Residual Connections:** Allow the model to propagate gradients more efficiently by adding the input directly to the output of a block. This ensures the gradient signal does not vanish, even in very deep networks.
+- **Dense Connections:** In some cases, we experimented with connections that concatenate outputs from all preceding layers. This type of connection facilitates feature reuse and improves gradient flow further.
+
+#### **Advantages of Residual and Dense Connections:**
+1. **Improved Gradient Flow:** Residual connections mitigate the risk of vanishing gradients, enabling stable training for deep networks.
+2. **Preservation of Information:** Features from earlier layers are preserved and aggregated across the network, preventing information loss and maintaining fine-grained details.
+3. **Ease of Optimization:** By simplifying the learning objective to residual mappings, the network converges faster and more effectively.
+4. **Enhanced Feature Reuse:** Dense connections promote the sharing of features across multiple layers, further enriching the learned representations.
+
+By incorporating residual and dense connections into our architecture, we were able to overcome the challenges posed by our deep model design and achieve better convergence, stability, and performance.
 
 ---
 
