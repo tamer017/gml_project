@@ -158,22 +158,15 @@ EdgeConv and traditional graph convolution (e.g., Graph Convolutional Networks, 
 
 ---
 
-Here's the revised section for your README, incorporating information from the provided link and adding relevant references:
 
----
 
-### TransformerConv and kNN Layers
-
-#### **TransformerConv**
+### **TransformerConv**
 
 The **TransformerConv** layer, as implemented in [PyTorch Geometric](https://pytorch-geometric.readthedocs.io/en/2.4.0/generated/torch_geometric.nn.conv.TransformerConv.html), integrates the attention mechanisms of Transformers with graph convolutional networks, making it particularly effective for processing non-Euclidean data structures like point clouds.
 
 The operation of a **TransformerConv** layer is defined as:
 
-$$\mathbf{x}^{\prime}_i = \mathbf{W}_1 \mathbf{x}_i + \sum_{j \in \mathcal{N}(i)} \alpha_{i,j} \mathbf{W}_2 \mathbf{x}_{j}$$
-
-$$\mathbf{x}^{\prime}_i = \mathbf{W}_1 \mathbf{x}_i + \sum_{j \in \mathcal{N}(i)} \alpha_{i,j} \mathbf{W}_2 \mathbf{x}_{j}$$
-
+![image](https://github.com/user-attachments/assets/d6588b86-bf44-4a8d-abb0-3cb1efee73df)
 
 Where:
 
