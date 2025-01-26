@@ -174,14 +174,14 @@ $$\mathbf{x}^{\prime}_i = \mathbf{W}_1 \mathbf{x}_i + \sum_{j \in \mathcal{N}(i)
 
 Where:
 
-- \(\mathbf{x}^{\prime}_i\): The updated feature of node \(i\).
-- \(\mathcal{N}(i)\): The set of neighbors for node \(i\).
-- \(\mathbf{W}_1\) and \(\mathbf{W}_2\): Learnable weight matrices.
-- \(\alpha_{i,j}\): The attention coefficient between nodes \(i\) and \(j\), computed as:
+- $$\mathbf{x}^{\prime}_i$$: The updated feature of node $$i$$.
+- $$\mathcal{N}(i)$$: The set of neighbors for node $$i$$.
+- $$\mathbf{W}_1$$ and $$\mathbf{W}_2$$: Learnable weight matrices.
+- $$\alpha_{i,j}$$: The attention coefficient between nodes $$i$$ and $$j$$, computed as:
 
 $$\alpha_{i,j} = \text{softmax} \left( \frac{(\mathbf{W}_3\mathbf{x}_i)^{\top} (\mathbf{W}_4\mathbf{x}_j)} {\sqrt{d}} \right)$$
 
-Here, \(d\) represents the dimensionality of the key vectors, and \(\mathbf{W}_3\) and \(\mathbf{W}_4\) are additional learnable weight matrices.
+Here, $$d$$ represents the dimensionality of the key vectors, and $$\mathbf{W}_3$$ and $$\mathbf{W}_4$$ are additional learnable weight matrices.
 
 **Key Features:**
 
@@ -202,7 +202,7 @@ Here, \(d\) represents the dimensionality of the key vectors, and \(\mathbf{W}_3
 
 #### **k-Nearest Neighbors (kNN) Layers**
 
-In point cloud processing, constructing a meaningful graph structure is essential. We employ **k-Nearest Neighbors (kNN)** to build this graph by connecting each point to its \(k\) closest neighbors based on Euclidean distance.
+In point cloud processing, constructing a meaningful graph structure is essential. We employ **k-Nearest Neighbors (kNN)** to build this graph by connecting each point to its $$k$$ closest neighbors based on Euclidean distance.
 
 **Benefits of kNN in This Context:**
 
@@ -218,7 +218,7 @@ In point cloud processing, constructing a meaningful graph structure is essentia
 Our model follows these steps:
 
 1. **Graph Construction:**
-   - Utilize a kNN layer to construct a graph where each point is connected to its \(k\) nearest neighbors.
+   - Utilize a kNN layer to construct a graph where each point is connected to its $$k$$ nearest neighbors.
 
 2. **Feature Aggregation:**
    - Apply TransformerConv layers to aggregate features from neighboring points, with attention mechanisms assigning appropriate weights to each neighbor's contribution.
