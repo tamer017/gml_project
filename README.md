@@ -134,7 +134,6 @@ To improve generalization, we apply data augmentation techniques such as random 
 
 ---
 
-This version ensures that all equations are properly rendered and visible. Let me know if you need further adjustments!
 ## Results
 
 ### Our Results
