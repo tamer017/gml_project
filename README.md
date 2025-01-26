@@ -163,13 +163,15 @@ EdgeConv and traditional graph convolution (e.g., Graph Convolutional Networks, 
 The **TransformerConv** layer combines the power of attention mechanisms with graph-based convolutions, making it highly effective for processing irregular data structures like point clouds. Inspired by the **Transformer architecture**, this layer uses **self-attention** to dynamically weigh the importance of neighboring points for feature aggregation.  
 
 The operation in a **TransformerConv** layer can be represented as:  
+
 $$h_i' = \sum_{j \in \mathcal{N}(i)} \alpha_{ij} W h_j$$  
 
 Where:  
 - $$h_i'$$: The updated feature of point $$i$$.  
 - $$\mathcal{N}(i)$$: The set of neighbors for point $$i$$.  
 - $$W$$: A learnable weight matrix.  
-- $$\alpha_{ij}$$: The attention coefficient between points $$i$$ and $$j$$, computed as:  
+- $$\alpha_{ij}$$: The attention coefficient between points $$i$$ and $$j$$, computed as:
+- 
 $$\alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k \in \mathcal{N}(i)} \exp(e_{ik})}$$  
 
 Here, $$e_{ij}$$ represents the **attention score**, calculated based on the features of points $$i$$ and $$j$$. Typically, this is implemented as:  
