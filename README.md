@@ -243,14 +243,19 @@ This project is part of our research in Graph Machine Learning. We aim to explor
 
 ---
 
+
+
 ## References
-1.@inproceedings{wu20153d,
-  title={3D ShapeNets: A Deep Representation for Volumetric Shapes},
-  author={Wu, Zhirong and Song, Shuran and Khosla, Aditya and Yu, Fisher and Zhang, Linguang and Tang, Xiaoou and Xiao, Jianxiong},
-  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
-  year={2015}
-}
-2. Princeton University, ModelNet40 Dataset. [Link](https://modelnet.cs.princeton.edu/)
+
+1. **3D ShapeNets Paper**  
+   This is the original paper that introduced the ModelNet40 dataset. It describes how the dataset was collected, processed, and used for 3D shape analysis tasks.  
+   [Paper Link](https://arxiv.org/abs/1406.5670)
+
+2. **ModelNet40 Dataset Website**  
+   The official website for the ModelNet40 dataset, hosted by Princeton University, provides additional details and resources.  
+   [Princeton University, ModelNet40 Dataset](https://modelnet.cs.princeton.edu/)
+
+
 
 ---
 
