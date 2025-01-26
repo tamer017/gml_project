@@ -306,7 +306,26 @@ $$\eta_t = \eta_{\text{min}} + \frac{1}{2} (\eta_{\text{max}} - \eta_{\text{min}
 
 ---
 ### Data Augmentation
-To improve generalization, we apply data augmentation techniques such as random rotation, scaling, and jittering to the point clouds during training. These augmentations help the model become invariant to transformations and improve robustness.
+
+Data augmentation is a crucial technique in machine learning, especially when working with limited datasets. It helps to increase the diversity of the training data, which can improve the generalization and robustness of the model. In the context of point cloud data, such as the **ModelNet40** and **ShapeNetPart** datasets, several augmentation techniques are applied to enhance the training process. Below is a brief overview of the simplified augmentation methods used in the updated code:
+
+#### 1. **Translation (Shifting and Scaling)**
+   - **Purpose**: To make the model invariant to the position and scale of the point cloud.
+   - **Method**: 
+     - **Scaling**: Each point in the point cloud is scaled by a random factor along the x, y, and z axes. The scaling factors are sampled uniformly from the range `[2/3, 3/2]`.
+     - **Shifting**: The point cloud is shifted by a random offset along the x, y, and z axes. The shift values are sampled uniformly from the range `[-0.2, 0.2]`.
+   - **Effect**: This augmentation helps the model to recognize objects regardless of their size and position in the 3D space.
+
+#### 2. **Shuffling**
+   - **Purpose**: To make the model invariant to the order of points in the point cloud.
+   - **Method**: The points in the point cloud are randomly shuffled.
+   - **Effect**: Since the order of points in a point cloud does not carry any meaningful information, shuffling ensures that the model does not rely on the specific order of points.
+
+#### 3. **Normalization**
+   - **Purpose**: To standardize the point cloud data, making it easier for the model to learn.
+   - **Method**: The point cloud is centered around the origin by subtracting the centroid (mean) of the point cloud. Then, the point cloud is scaled so that the furthest point from the origin lies on the surface of a unit sphere.
+   - **Effect**: Normalization ensures that all point clouds have a consistent scale and position, which can improve the convergence and stability of the training process.
+
 
 ---
 
