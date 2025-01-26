@@ -333,7 +333,121 @@ Data augmentation is a crucial technique in machine learning, especially when wo
 ---
 ## Experiments
 ### Experiment 1
+#### **Training on ModelNet40 with EdgeConv and Skip Connections**
+Evaluate the performance of a **Graph Neural Network (GNN)** using **EdgeConv** layers with **skip connections** on the **ModelNet40** dataset.
+
+---
+
+### **Model Architecture**
+
+The model consists of **EdgeConv blocks**, a **fusion layer**, and a **prediction head**:
+
+#### **EdgeConv Blocks**
+1. **Dynamic kNN Graph**:
+   - Connects each point to its $$k=15$$ nearest neighbors, updated dynamically at each layer.
+   
+2. **EdgeConv Layer**:
+   - Uses an MLP to compute edge features between points.
+   - Includes:
+     - Linear layers (input: 128, output: 64).
+     - ReLU activation and batch normalization.
+   - Aggregates features using **max-pooling**.
+
+3. **Skip Connections**:
+   - Residual connections between input and output to stabilize training.
+
+#### **Fusion Layer**
+- Aggregates features from all EdgeConv blocks.
+- Includes:
+  - A 2D convolution (input: 896, output: 1024, kernel: 1x1).
+  - LeakyReLU activation and batch normalization.
+
+#### **Prediction Head**
+1. **First Convolution**:
+   - Input: 2048, Output: 512.
+   - LeakyReLU, batch normalization, and dropout (0.5).
+
+2. **Second Convolution**:
+   - Input: 512, Output: 256.
+   - LeakyReLU, batch normalization, and dropout (0.5).
+
+3. **Final Convolution**:
+   - Input: 256, Output: 40 (number of classes).
+   - Produces the final classification logits.
+
+---
+
+### **Hyperparameters**
+- **Batch Size**: 32 (training), 50 (testing).
+- **Epochs**: 400.
+- **Learning Rate**: 0.001.
+- **Optimizer**: AdamW with weight decay = 0.0001.
+- **Dropout Rate**: 0.5.
+- **k in kNN**: 15.
+- **Number of Filters**: 64 per EdgeConv block.
+- **Number of Blocks**: 14.
+- **Activation Function**: ReLU (EdgeConv), LeakyReLU (fusion and prediction head).
+- **Data Augmentation**: Translation, shuffling, and normalization.
+
+---
+
 ### Experiment 2
+#### **Training on ModelNet40 with TransformerConv and Dense Connections**
+Evaluate the performance of a **Graph Neural Network (GNN)** using **TransformerConv** layers with **dense connections** on the **ModelNet40** dataset.
+
+---
+
+### **Model Architecture**
+
+The model consists of **TransformerConv blocks**, a **fusion layer**, and a **prediction head**:
+
+#### **TransformerConv Blocks**
+1. **Dynamic kNN Graph**:
+   - Connects each point to its $$k=15$$ nearest neighbors, updated dynamically at each layer.
+   
+2. **TransformerConv Layer**:
+   - Uses multi-head attention to compute edge features between points.
+   - Includes:
+     - TransformerConv layers with 4 attention heads.
+     - Feed-forward networks with ReLU activation and dropout (0.1).
+   - Aggregates features using **max-pooling**.
+
+3. **Dense Connections**:
+   - Concatenates outputs from all preceding layers to improve feature reuse and gradient flow.
+
+#### **Fusion Layer**
+- Aggregates features from all TransformerConv blocks.
+- Includes:
+  - A 2D convolution (input: 7168, output: 1024, kernel: 1x1).
+  - LeakyReLU activation and batch normalization.
+
+#### **Prediction Head**
+1. **First Convolution**:
+   - Input: 2048, Output: 512.
+   - LeakyReLU, batch normalization, and dropout (0.5).
+
+2. **Second Convolution**:
+   - Input: 512, Output: 256.
+   - LeakyReLU, batch normalization, and dropout (0.5).
+
+3. **Final Convolution**:
+   - Input: 256, Output: 40 (number of classes).
+   - Produces the final classification logits.
+
+---
+
+### **Hyperparameters**
+- **Batch Size**: 32 (training), 50 (testing).
+- **Epochs**: 200.
+- **Learning Rate**: 0.0001.
+- **Optimizer**: AdamW with weight decay = 0.0001.
+- **Dropout Rate**: 0.5.
+- **k in kNN**: 15.
+- **Number of Filters**: 256 per TransformerConv block.
+- **Number of Blocks**: 7.
+- **Activation Function**: ReLU (TransformerConv), LeakyReLU (fusion and prediction head).
+- **Data Augmentation**: Translation, scaling, shuffling, and normalization.
+
 ---
 
 ## Results
