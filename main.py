@@ -44,7 +44,7 @@ def train(model, train_loader, test_loader, opt):
 
         scheduler.step()
 
-        # ------------------  save ckpt
+        # ------------------  save ckpt ------------------  
         if test_overall_acc > best_test_overall_acc:
             best_test_overall_acc = test_overall_acc
             avg_acc_when_best = test_class_acc
@@ -52,7 +52,7 @@ def train(model, train_loader, test_loader, opt):
                          "Its avg acc is {:.4f}".format(best_test_overall_acc, avg_acc_when_best))
             save_ckpt(model, optimizer, scheduler, opt, 'best')
 
-        # ------------------ show information
+        # ------------------ show information ------------------  
         logging.info(
             "===> Epoch {}/{}, Train Loss {:.4f}, Test Overall Acc {:.4f}, Test Avg Acc {:4f}, "
             "Best Test Overall Acc {:.4f}, Its test avg acc {:.4f}.".format(
@@ -186,7 +186,8 @@ if __name__ == '__main__':
     if opt.fine_tune == True:
         opt.n_classes = train_loader.dataset.num_classes()
         model.module.update_num_classes(opt.n_classes)
-        print(model)
+        print('number of classes changed to {}'.format(opt.n_classes))
+        
 
     if opt.phase == 'train':
         train(model, train_loader, test_loader, opt)
