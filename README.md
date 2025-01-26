@@ -52,8 +52,6 @@ The **ModelNet40** dataset is a widely used benchmark for 3D shape recognition a
 
 This project provides a Python script (`dataset.py`) that handles **downloading**, **loading**, and **processing** the ModelNet40 dataset. The script also includes a PyTorch-compatible dataset loader for seamless integration into machine learning workflows.
 
----
-
 #### About the Dataset
 - **Number of Models**: 12,311
 - **Number of Classes**: 40
@@ -91,7 +89,6 @@ $$x_i' = \max_{j \in \mathcal{N}(i)} h_{ij}$$
 
 where $$\mathcal{N}(i)$$ is the set of neighbors of $$x_i$$, and $$\max$$ is a symmetric aggregation function (e.g., max-pooling).
 
----
 
 ### Graph Transformer
 We replace some **EdgeConv** layers with **Graph Transformers** to capture long-range dependencies in the point cloud. Transformers are effective in modeling global relationships, which complements the local features extracted by EdgeConv.
