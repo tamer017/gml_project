@@ -89,8 +89,6 @@ class EdgeConvLayer(nn.Module):
             aggr=aggr
         )
 
-        # Normalization
-        self.norm = norm_layer(norm, out_channels) if norm else None
 
     def forward(self, x, edge_index):
         """
@@ -111,10 +109,6 @@ class EdgeConvLayer(nn.Module):
         x = x.squeeze(-1).permute(0, 2, 1).reshape(B * N, C)  # [B*N, C]
         # Apply EdgeConv
         out = self.edge_conv(x, edge_index)  # [B*N, out_channels]
-
-        # # Apply normalization
-        if self.norm:
-            out = self.norm(out)
 
         # Reshape back to original format
         out_channels = out.shape[-1]
@@ -166,7 +160,7 @@ class GraphConv2d(nn.Module):
     """
     Static graph convolution layer
     """
-    def __init__(self, in_channels, out_channels, conv='gcn', act='relu', norm=None, bias=True):
+    def __init__(self, in_channels, out_channels, conv='edge', act='relu', norm=None, bias=True):
         super(GraphConv2d, self).__init__()
         if conv == 'edge':
             self.gconv = EdgeConvLayer(in_channels, out_channels, act, norm, bias)
