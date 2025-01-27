@@ -456,6 +456,8 @@ The model consists of **TransformerConv blocks**, a **fusion layer**, and a **pr
 </details>
 
 ## Results
+![image](https://github.com/user-attachments/assets/32128e98-ab22-4930-9509-bee853527e2b)
+
 
 ### Our Results
 - **Model 1**: Repeated EdgeConv + kNN with skip connections. Accuracy: **93.27%**
