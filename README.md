@@ -457,6 +457,38 @@ The model consists of **TransformerConv blocks**, a **fusion layer**, and a **pr
 
 ## Results
 ![image](https://github.com/user-attachments/assets/32128e98-ab22-4930-9509-bee853527e2b)
+| Method Type       | Method Name       | Overall Accuracy | Average Class Accuracy | Test Time (s) |
+|-------------------|-------------------|----------|-----------|-----------|
+| Graph-Based        | DGCNN             | 92.9%    |     _     |     _     |
+| Graph-Based        | Ours (EdgeConv)   | 93.27%   |     85.43%     |          | 
+| Graph-Based        | Ours (TransformerConv)   | 92.75%   |     89.36%    |         |
+| Non-Graph-Based    | PointNet          | 89.2%    |     _     |     _     |
+| Non-Graph-Based    | PointNet++        | 90.7%    |     _     |     _     |
+
+---
+### EdgeConv Result
+- **Test Time**: 18.6 ms per point cloud.
+- **Number of Parameters**: 3.2M
+- **Test Overall Accuracy**: 93.27%
+- **Test Average Class Accuracy**: 85.43%
+
+---
+### TransformerConv Result
+- **Test Time**: 18.6 ms per point cloud.
+- **Number of Parameters**: 3.2M
+- **Test Overall Accuracy**: 92.75%
+- **Test Average Class Accuracy**: 89.36%
+
+---
+
+### Loss Graphs
+Below are the training and validation loss graphs for both experiments to visualize convergence:
+#### TransformerConv Graph
+![image](https://github.com/user-attachments/assets/74ca964d-d026-4800-919c-1c8f8d38c666)
+#### EdgeConv Graph
+![image](https://github.com/user-attachments/assets/4b1c40e6-220c-4d5e-ae8e-3641a32ed3a4)
+
+---
 
 
 ### Our Results
