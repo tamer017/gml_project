@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=train-multitask_classifier  # Name of the job
+#SBATCH --job-name=point-cloud-classification  # Name of the job
 #SBATCH -t 40:00:00                            # Maximum runtime of 40 hours
 #SBATCH -p gpu                                 # Use the GPU partition
 #SBATCH -G RTX5000:4                           # Request 4 RTX5000 GPUs
