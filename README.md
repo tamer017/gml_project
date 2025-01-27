@@ -551,8 +551,9 @@ You can customize the training and testing process using various options availab
 You can find the pre-trained model weights at the following link:  
 [Download Model Weights](https://drive.google.com/drive/folders/1hm0q7_I8cLXCDSXgNoBQ-mlyvRxIgqOz)
 
-## Options in `run_main.sh`
+
 <details>
+<summary>Options in `run_main.sh`</summary>
 The `train_main.sh` script provides several options for customizing the training and testing process. Below is a list of the most important options and their explanations:
 
 ### Base Options
