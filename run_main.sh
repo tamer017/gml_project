@@ -73,4 +73,4 @@ conda activate gml
 # --epsilon: Stochastic epsilon value for graph construction (default: 0.2)
 # --no_stochastic: Set True to disable stochastic graph construction (default: False)
 
-python main.py --multi_gpus
+python main.py --multi_gpus "$@"
