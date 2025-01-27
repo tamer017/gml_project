@@ -468,14 +468,14 @@ The model consists of **TransformerConv blocks**, a **fusion layer**, and a **pr
 ---
 ### EdgeConv Result
 - **Test Time**: 18.6 ms per point cloud.
-- **Number of Parameters**: 3.2M
+- **Number of Parameters**: 2.2M
 - **Test Overall Accuracy**: 93.27%
 - **Test Average Class Accuracy**: 85.43%
 
 ---
 ### TransformerConv Result
 - **Test Time**: 18.6 ms per point cloud.
-- **Number of Parameters**: 3.2M
+- **Number of Parameters**: 15.8M
 - **Test Overall Accuracy**: 92.75%
 - **Test Average Class Accuracy**: 89.36%
 
