@@ -524,22 +524,35 @@ source gml_env_install.sh
 This script will install all the necessary dependencies, including PyTorch, PyTorch Geometric, and other required libraries. It will also set up the CUDA paths and create a Conda environment named `gml`.
 
 ### Training and Testing
-To train or test the model, use the following command:
+To train or test the models, use the following commands:
 
+#### Training the EdgeConv Model
 ```bash
-# For training
-python main.py --phase train --multi_gpus
-
-# For testing
-python main.py --phase test --pretrained_model path/to/pretrained/model.pth
+source run_main.sh --phase train --multi_gpus --block res --n_blocks 14 --data_dir /dataset --n_filter 64 --conv edge
+```
+#### Training the TransformerConv Model
+```bash
+source run_main.sh --phase train --n_blocks 7 --block dense --data_dir /dataset --n_filter 256 --conv trans --multi_gpu
+```
+#### Test the EdgeConv Model
+```bash
+source run_main.sh --phase test --multi_gpus --block res --n_blocks 14 --data_dir /dataset --n_filter 64 --conv edge --pretrained_model path/to/pretrained/edgeconv_model.pth
+```
+#### Test the TransformerConv Model
+```bash
+source run_main.sh --phase test --n_blocks 7 --block dense --data_dir /dataset --n_filter 256 --conv trans --multi_gpu --pretrained_model path/to/pretrained/transformerconv_model.pth
 ```
 
-You can customize the training and testing process using various options available in the `train_main.sh` script.
+
+You can customize the training and testing process using various options available in the `run_main.sh` or `config.py` scripts.
 
 ---
+### Model Weights  
+You can find the pre-trained model weights at the following link:  
+[Download Model Weights](https://drive.google.com/drive/folders/1hm0q7_I8cLXCDSXgNoBQ-mlyvRxIgqOz)
 
-## Options in `train_main.sh`
-
+## Options in `run_main.sh`
+<details>
 The `train_main.sh` script provides several options for customizing the training and testing process. Below is a list of the most important options and their explanations:
 
 ### Base Options
@@ -588,6 +601,8 @@ The `train_main.sh` script provides several options for customizing the training
 - **`--no_dilation`**: If set, dilated kNN will not be used. Default: `False`.
 - **`--epsilon`**: Stochastic epsilon for graph construction. Default: `0.2`.
 - **`--no_stochastic`**: If set, stochastic graph construction will not be used. Default: `False`.
+  
+</details>
 
 ---
 
