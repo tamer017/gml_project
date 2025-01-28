@@ -59,8 +59,11 @@ This project provides a Python script (`dataset.py`) that handles **downloading*
 - **Training Set**: 9,843 models
 - **Test Set**: 2,468 models (~20%)
 - **Point Cloud Size**: 2,048 points per model
-![image](https://github.com/user-attachments/assets/251d2710-bb12-4db9-9aae-bf8e025da824)
+  
 ![image](https://github.com/user-attachments/assets/02e30678-7da8-439b-914a-0760e79413f5)
+
+![image](https://github.com/user-attachments/assets/251d2710-bb12-4db9-9aae-bf8e025da824)
+
 
 
 
