@@ -527,19 +527,19 @@ To train or test the models, use the following commands:
 
 #### Training the EdgeConv Model
 ```bash
-source run_main.sh --phase train --multi_gpus --block res --n_blocks 14 --data_dir /dataset --n_filter 64 --conv edge
+source run_main.sh --phase train --multi_gpus --block res --n_blocks 14 --data_dir /Dataset --n_filter 64 --batch_size 32 --conv edge
 ```
 #### Training the TransformerConv Model
 ```bash
-source run_main.sh --phase train --n_blocks 7 --block dense --data_dir /dataset --n_filter 256 --conv trans --multi_gpu
+source run_main.sh --phase train --n_blocks 7 --block dense --data_dir /Dataset --n_filter 256 --batch_size 32 --conv trans --dynamic True --multi_gpu 
 ```
 #### Test the EdgeConv Model
 ```bash
-source run_main.sh --phase test --multi_gpus --block res --n_blocks 14 --data_dir /dataset --n_filter 64 --conv edge --pretrained_model path/to/pretrained/edgeconv_model.pth
+source run_main.sh --phase test --multi_gpus --block res --n_blocks 14 --data_dir /Dataset --n_filter 64 --conv edge --batch_size 32 --pretrained_model path/to/pretrained/edgeconv_model.pth
 ```
 #### Test the TransformerConv Model
 ```bash
-source run_main.sh --phase test --n_blocks 7 --block dense --data_dir /dataset --n_filter 256 --conv trans --multi_gpu --pretrained_model path/to/pretrained/transformerconv_model.pth
+source run_main.sh --phase test --n_blocks 7 --block dense --data_dir /Dataset --n_filter 256 --conv trans --multi_gpu --batch_size 32 --dynamic True --pretrained_model path/to/pretrained/transformerconv_model.pth
 ```
 
 
