@@ -457,7 +457,6 @@ The model consists of **TransformerConv blocks**, a **fusion layer**, and a **pr
 
 ## Results
 ### 🏆 ModelNet40 Classification (3D Point Clouds)
-![image](https://github.com/user-attachments/assets/32128e98-ab22-4930-9509-bee853527e2b)
 ![image](https://github.com/user-attachments/assets/32bbc7af-2e04-4880-bc6e-579a94996e8a)
 
 ### Benchmark Comparison
@@ -475,14 +474,14 @@ The model consists of **TransformerConv blocks**, a **fusion layer**, and a **pr
 | Non-Graph-Based   | PointMLP                 | 94.5%             | _                       | _                    |
 ---
 ### EdgeConv Result
-- **Test Time**: 18.6 ms per point cloud.
+- **Test Time**: 7.55 ms per point cloud.
 - **Number of Parameters**: 2.2M
 - **Test Overall Accuracy**: 93.27%
 - **Test Average Class Accuracy**: 90.09% 
 
 ---
 ### TransformerConv Result
-- **Test Time**: 18.6 ms per point cloud.
+- **Test Time**: 8.34 ms per point cloud.
 - **Number of Parameters**: 15.8M
 - **Test Overall Accuracy**: 92.75%
 - **Test Average Class Accuracy**: 89.36%
@@ -492,7 +491,7 @@ The model consists of **TransformerConv blocks**, a **fusion layer**, and a **pr
 
 - EdgeConv achieves 93.27% OA – outperforms DGCNN by +0.37% with comparable parameters
 
-- 7.2× leaner than TransformerConv (2.2M vs 15.8M params) while being 10% faster
+- EdgeConv 7.2× Smaller than TransformerConv (2.2M vs 15.8M params) while being 10% faster
 ---
 
 ### Loss Graphs
@@ -510,26 +509,7 @@ To evaluate transfer learning capabilities, we fine-tuned our ModelNet40-pretrai
 - Achieved 92.4% accuracy in 15 epochs (vs 30+ epochs for from-scratch training)
 - Stabilized loss within 5 epochs (2.8× faster than baseline implementations)
 ---
-### Our Results
-- **Model 1**: Repeated EdgeConv + kNN with skip connections. Accuracy: **93.27%**
-- **Model 2**: EdgeConv replaced with TransformerConvs. Accuracy: **92.83%**
 
-### Comparison with Other Methods
-We compare our results with both graph-based and non-graph-based methods on the ModelNet40 dataset:
-
-| Method Type       | Method Name       | Accuracy |
-|-------------------|-------------------|----------|
-| Graph-Based        | DGCNN             | 92.9%    |
-| Graph-Based        | Ours (EdgeConv)   | 93.27%   |
-| Non-Graph-Based    | PointNet          | 89.2%    |
-| Non-Graph-Based    | PointNet++        | 90.7%    |
-
----
-
-## Fine-Tuning on ShapeNetPart
-To further evaluate our model's generalization, we fine-tune it on the **ShapeNetPart** dataset, which contains part-level annotations for 3D objects. This helps in understanding how well our model performs on more granular tasks.
-
----
 
 ## How to Run
 
