@@ -461,17 +461,17 @@ The model consists of **TransformerConv blocks**, a **fusion layer**, and a **pr
 
 ### Benchmark Comparison
 
-| Method Type       | Method Name              | Overall Accuracy | Average Class Accuracy | Inference Time       |
-|-------------------|--------------------------|-------------------|-------------------------|----------------------|
-| Graph-Based       | DGCNN                    | 92.9%             | _                       | _                    |
-| Graph-Based       | Ours (EdgeConv)          | 93.27%            | 90.09%                 | 7.55 ms/sample       |
-| Graph-Based       | Ours (TransformerConv)   | 92.75%            | 89.36%                 | 8.34 ms/sample       |
-| Non-Graph-Based   | PointNet                 | 89.2%             | _                       | _                    |
-| Non-Graph-Based   | PointNet++               | 90.7%             | _                       | _                    |
-| Non-Graph-Based   | PointGPT                 | 94.9%             | _                       | _                    |
-| Non-Graph-Based   | ReCon++                  | 95%               | _                       | _                    |
-| Non-Graph-Based   | Point2Vec                | 94.8%             | _                       | _                    |
-| Non-Graph-Based   | PointMLP                 | 94.5%             | _                       | _                    |
+| Method Type       | Method Name              | Overall Accuracy | Average Class Accuracy | Inference Time       | Number of Parameters |
+|-------------------|--------------------------|------------------|------------------------|----------------------|--------------------|
+| Graph-Based       | DGCNN                    | 92.9%            | 90.2%                      | —                    | 1.81M          |
+| Graph-Based       | Ours (EdgeConv)          | 93.27%           | 90.09%                 | 7.55 ms/sample       | 2.2M               |
+| Graph-Based       | Ours (TransformerConv)   | 92.75%           | 89.36%                 | 8.34 ms/sample       | 15.8M              |
+| Non-Graph-Based   | PointNet                 | 89.2%            | 86%                      | —                    | 3.47M                  |
+| Non-Graph-Based   | PointNet++               | 90.7%            | —                      | —                    | 1.74M                  |
+| Non-Graph-Based   | PointGPT                 | 94.9%            | —                      | —                    | —                  |
+| Non-Graph-Based   | ReCon++                  | 95%              | —                      | —                    | —                  |
+| Non-Graph-Based   | Point2Vec                | 94.8%            | 92%                      | —                    | —                  |
+| Non-Graph-Based   | PointMLP                 | 94.5%            | 91.4%                      | —                    | —                  |
 ---
 ### EdgeConv Result
 - **Test Time**: 7.55 ms per point cloud.
