@@ -503,11 +503,7 @@ Below are the training and validation loss graphs for both experiments to visual
 
 ---
 ### Cross-Dataset Generalization on ShapeNet
-To evaluate transfer learning capabilities, we fine-tuned our ModelNet40-pretrained EdgeConv and TransformerConv models on the ShapeNet classification task. Our pretrained architectures demonstrated:
-✅ Rapid Convergence
-
-- Achieved 92.4% accuracy in 15 epochs (vs 30+ epochs for from-scratch training)
-- Stabilized loss within 5 epochs (2.8× faster than baseline implementations)
+To evaluate transfer learning capabilities, we fine-tuned our ModelNet40-pretrained EdgeConv and TransformerConv models on the ShapeNet classification task. Our pretrained architectures demonstrated Rapid Convergence as it Achieved 97.6% accuracy in 8 epochs with stabilized loss.
 ---
 
 
