@@ -639,7 +639,7 @@ Artificial Intelligence (AI) aided the development of this project. Please find 
 11. Qi, Z., Dong, R., Zhang, S., Geng, H., Han, C., Ge, Z., Yi, L., & Ma, K. (2024, February 27). ShapeLLM: Universal 3D Object Understanding for Embodied Interaction. [Link](https://arxiv.org/abs/2402.17766)
 12. Zeid, K. A., Schult, J., Hermans, A., & Leibe, B. (2023, March 29). Point2VEC for Self-Supervised Representation Learning on Point Clouds. [Link](https://arxiv.org/abs/230)
 13. Ma, X., Qin, C., You, H., Ran, H., & Fu, Y. (2022, February 15). Rethinking network design and local geometry in point Cloud: a simple residual MLP framework. [Link](https://arxiv.org/abs/2202.07123)
-14. Li, G., Müller, M., Thabet, A., & Ghanem, B. (2019, April 7). DeepGCNS: Can GCNs go as deep as CNNs? [Link]((https://arxiv.org/abs/1904.03751))
+14. Li, G., Müller, M., Thabet, A., & Ghanem, B. (2019, April 7). DeepGCNS: Can GCNs go as deep as CNNs? [Link](https://arxiv.org/abs/1904.03751)
 15. Qi, C. R., Yi, L., Su, H., & Guibas, L. J. (2017, June 7). PointNet++: deep hierarchical feature learning on point sets in a metric space. [Link](https://arxiv.org/abs/1706.02413)
 16. Qi, C. R., Su, H., Mo, K., & Guibas, L. J. (2016, December 2). PointNet: Deep learning on point sets for 3D classification and segmentation. [Link](https://arxiv.org/abs/1612.00593)
 
