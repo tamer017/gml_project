@@ -468,17 +468,20 @@ The model consists of **TransformerConv blocks**, a **fusion layer**, and a **pr
 
 ### Benchmark Comparison
 
-| Method Type       | Method Name              | Overall Accuracy | Average Class Accuracy | Inference Time       | Number of Parameters |
-|-------------------|--------------------------|------------------|------------------------|----------------------|--------------------|
-| Graph-Based       | DGCNN                    | 92.9%            | 90.2%                      | —                    | 1.81M          |
-| Graph-Based       | Ours (EdgeConv)          | 93.27%           | 90.09%                 | 7.55 ms/sample       | 2.2M               |
-| Graph-Based       | Ours (TransformerConv)   | 92.75%           | 89.36%                 | 8.34 ms/sample       | 15.8M              |
-| Non-Graph-Based   | PointNet                 | 89.2%            | 86%                      | —                    | 3.47M                  |
-| Non-Graph-Based   | PointNet++               | 90.7%            | —                      | —                    | 1.74M                  |
-| Non-Graph-Based   | PointGPT                 | 94.9%            | —                      | —                    | —                  |
-| Non-Graph-Based   | ReCon++                  | 95%              | —                      | —                    | —                  |
-| Non-Graph-Based   | Point2Vec                | 94.8%            | 92%                      | —                    | —                  |
-| Non-Graph-Based   | PointMLP                 | 94.5%            | 91.4%                      | —                    | —                  |
+| **Model Name**              | **Overall Accuracy (%)** | **Category**           |
+|-----------------------------|--------------------------|------------------------|
+| RS-CNN                     | 93.6                    | Graph-Based            |
+| MLVCNN                     | 94.16                   | Non-Graph-Based        |
+| MHBN                       | 94.7                    |  Non-Graph-Based        |
+| RotationNet                | 97.37                   | Non-Graph-Based        |
+| PANORAMA-ENN               | 95.56                   |  Non-Graph-Based        |
+| VRN Ensemble               | 95.54                   | NNon-Graph-Based        |
+| MVCNN-New                  | 95.0                    |Non-Graph-Based        |
+| SPNet                      | 92.63                   | Non-Graph-Based        |
+| 3DCapsule                  | 92.7                    | Non-Graph-Based        |
+| LDGCNN                     | 92.9                    | Graph-Based            |
+| **EdgeConv (Our Model)**    | 93.27                   | Graph-Based (Our Model)|
+| **TransformerConv (Our Model)** | 92.75              |  Graph-Based (Our Model)|
 ---
 ### EdgeConv Result
 - **Test Time**: 7.55 ms per point cloud.
